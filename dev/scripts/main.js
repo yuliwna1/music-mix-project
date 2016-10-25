@@ -2,7 +2,20 @@
 var musicmix = {};
 
 // FUNCTIONS //
-
+musixmix.getLyrics = function() {
+	$.ajax({
+        type: 'GET',
+        url: 'http://api.musixmatch.com/ws/1.1/track.search',
+        data: {
+            apikey: 'd1f1cb04d0c210368a40509a8dc77f76',
+            q_track: 'Shot For Me',
+            format: 'jsonp',
+        },
+        dataType: 'jsonp'    
+    }).then(function(info) {
+        console.log(info);
+    });
+}
 
 // EVENTS //
 musicmix.events = function() {
