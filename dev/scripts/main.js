@@ -2,7 +2,7 @@
 var musicmix = {};
 
 // FUNCTIONS //
-musixmix.getLyrics = function() {
+musicmix.getLyrics = function() {
 	$.ajax({
         type: 'GET',
         url: 'http://api.musixmatch.com/ws/1.1/track.search',
@@ -24,7 +24,7 @@ musicmix.events = function() {
 
 musicmix.init = function() {
 	// Call Functions
-	musicmix.events();
+	// musicmix.events();
 };
 
 // DOCUMENT READY //
