@@ -24,7 +24,8 @@ musicmix.events = function() {
 
 musicmix.init = function() {
 	// Call Functions
-	// musicmix.events();
+    musicmix.getLyrics();
+	musicmix.events();
 };
 
 // DOCUMENT READY //
