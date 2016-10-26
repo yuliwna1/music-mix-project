@@ -83,7 +83,7 @@ musicmix.showEmoji = function() {
 // **Need to add containment class (area within which user will be allowed to drag item)
 
 // musicmix.makeDraggable = function() {
-//     $('i').draggable({revert:true, containment: })
+//     $('.emoji').draggable({revert:true})
 
 // }
 
