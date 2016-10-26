@@ -77,10 +77,7 @@ musicmix.showEmoji = function() {
         $($emojiContainer).append($emoji);
 
         $('.tool-picker-first').append($emojiContainer);
-
-        console.log('&#' + i + ';');
-=======
-        $('html').append($emojiContainer);
+        $('tool-picker-first').append($emojiContainer);
 
     }
 };
