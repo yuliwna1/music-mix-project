@@ -8,7 +8,7 @@ musicmix.getLyrics = function(query) {
         url: 'http://api.musixmatch.com/ws/1.1/track.search',
         data: {
             apikey: 'd1f1cb04d0c210368a40509a8dc77f76',
-            q_lyrics: query,
+            q_lyrics: musicmix.searchQuery,
             format: 'jsonp',
             s_track_rating: 'desc',
         },
@@ -62,24 +62,26 @@ THIS FIRST, IT WILL BE GAME OVER FOR YOU, I PROMISE. :) */
 jqueryUI functionality and applies them to elements with a corresponding 
 class. To be called in the init function. */
 
+// DISPLAY EMOJI... TO BE TRIGGERED ON MOUSE CLICK LATER!
+musicmix.showLyrics = function () {
+    
+};
+
 musicmix.showEmoji = function() {
     for (var i = 127744; i <= 128591; i++) {
-        // Emoji Index
-        emojiIndex = i.toString();
-
-        // Create a container for the emoji
+        // Create a Container for the Emoji
         var $emojiContainer = $('<div>');
         $emojiContainer.addClass('grid-cell emoji-container');
     
         // Create The Emoji
-        var $emoji = $('<i>');
+        var $emoji = $('<article>');
         $emoji.addClass('emoji');
-        $emoji.text('&#' + emojiIndex + ';');
+        $emoji.html('&#' + i + ';');
 
         $($emojiContainer).append($emoji);
         $('html').append($emojiContainer);
 
-        // console.log('&#' + emojiIndex + ';')
+        console.log('&#' + i + ';');
     }
 };
 
@@ -138,7 +140,7 @@ musicmix.init = function() {
 	musicmix.events();
     // musicmix.makeDraggable ();
     // musicmix.makeDroppable();
-    musicmix.lyricSearch
+    musicmix.lyricSearch();
 };
 
 // DOCUMENT READY //
