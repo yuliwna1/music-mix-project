@@ -79,7 +79,7 @@ musicmix.showEmoji = function() {
         $emoji.html('&#' + i + ';');
 
         $($emojiContainer).append($emoji);
-        $('html').append($emojiContainer);
+        $('.tool-picker-first').append($emojiContainer);
 
         console.log('&#' + i + ';');
     }
@@ -135,10 +135,12 @@ musicmix.events = function() {
 
     // This function is responsible for clicking on nav and brings tool picker
 
-    $('#click-first-button').on('click', function() {
-        $('.general').clear();
-        $('.title').append('<h2>First Button Header</h2>');
-
+    $('#click-first-button').on('click', function(e) {
+        e.preventDefault();
+        $('.title-first').empty();
+        $('.tool-picker-first').empty();
+        $('.title-first').append('<h2>First Button Header</h2>');
+        musicmix.showEmoji();
             
     });
 
