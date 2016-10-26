@@ -33,6 +33,27 @@ THIS FIRST, IT WILL BE GAME OVER FOR YOU, I PROMISE. :) */
 jqueryUI functionality and applies them to elements with a corresponding 
 class. To be called in the init function. */
 
+musicmix.showEmoji = function() {
+    for (var i = 127744; i <= 128591; i++) {
+        // Emoji Index
+        emojiIndex = i.toString();
+
+        // Create a container for the emoji
+        var $emojiContainer = $('<div>');
+        $emojiContainer.addClass('grid-cell emoji-container');
+    
+        // Create The Emoji
+        var $emoji = $('<i>');
+        $emoji.addClass('emoji');
+        $emoji.text('&#' + emojiIndex + ';');
+
+        $($emojiContainer).append($emoji);
+        $('html').append($emojiContainer);
+
+        console.log('&#' + emojiIndex + ';')
+    }
+};
+
 // EVENTS //
 musicmix.events = function() {
     /* On form submit: Function that checks the values entered into three 
