@@ -137,7 +137,7 @@ musicmix.events = function() {
 
     $('#click-first-button').on('click', function(e) {
         e.preventDefault();
-        $('.title-first').empty();
+        // $('.title-first', '.title-second', '.title-third', '.tool-picker-first', '.tool-picker-second', '.tool-picker-third').empty();
         $('.title-second').empty();
         $('.title-third').empty();
         $('.tool-picker-first').empty();
@@ -149,6 +149,7 @@ musicmix.events = function() {
 
     $('#click-second-button').on('click', function(e) {
         e.preventDefault();
+        // $('.title-first', '.title-second', '.title-third', '.tool-picker-first', '.tool-picker-second', '.tool-picker-third').empty();
         $('.title-first').empty();
         $('.title-second').empty();
         $('.title-third').empty();
@@ -161,6 +162,7 @@ musicmix.events = function() {
 
     $('#click-third-button').on('click', function(e) {
         e.preventDefault();
+        // $('.title-first', '.title-second', '.title-third', '.tool-picker-first', '.tool-picker-second', '.tool-picker-third').empty();
         $('.title-first').empty();
         $('.title-second').empty();
         $('.title-third').empty();
