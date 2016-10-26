@@ -1,3 +1,95 @@
 .canvas-page {
-	background: green;
+	border: 1px solid red;
+	height: 100vh;
+
+	nav.grid {
+		border: 2px solid yellow;
+		width: 10%;
+		flex-direction: column;
+		justify-content: flex-start;
+
+		.logo {
+			border: 1px solid green;
+			font-size: 2rem;
+			width: 50px;
+			padding: 5%;
+			margin-bottom: 5%;
+			
+		}
+	}
 }
+
+ul.vertical-nav {
+
+	// background: red;
+	li {
+		list-style: none;
+		width: 50px;
+		margin-top: 10%;
+		&:hover {
+			cursor: pointer;
+			background: yellow;
+		}
+		a {
+			text-decoration: none;
+			padding: 10%;
+			font-size: 2rem;
+			color: red;
+			border: 1px solid black;
+			display: block;
+		}
+	}
+}
+
+// This is where the selection menu goes
+
+section.selection-menu {
+	border: 2px solid blue;
+	width: 20%;
+}
+
+article.first-button {
+	.title {
+		width: 200px;
+		height: 30px;
+		border: 1px solid blue;
+		margin: 0 auto;
+		margin-top: 3%;
+	}
+	.tool-picker {
+		width: 200px;
+		height: 200px;
+		border: 1px solid blue;
+		margin: 0 auto;
+		margin-top: 3%;
+	}
+}
+
+
+
+
+
+// This is where the main card creator/maker goes
+
+section.card-creator {
+	border: 2px solid green;
+	width: 70%;
+	.card-builder {
+		border: 1px solid black;
+		background: yellow;
+		width: 600px;
+		height: 300px;
+		margin: 0 auto;
+		margin-top: 3%;
+	}
+}
+
+.card-creator-buttons {
+	margin: 0 auto;
+	text-align: center;
+	button {
+		width: 20%;
+		margin: 5%;
+	}
+}
+
