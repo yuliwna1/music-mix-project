@@ -129,6 +129,20 @@ musicmix.events = function() {
     /* On click of the background tab: Take the output from a call to
     Unsplash.it. Clear the draggable pane. Populate the draggable
     pane with html elements containing photos */
+
+    // This function is responsible for clicking on nav and brings tool picker
+
+    function clickButton() {
+        $('.general').hide();
+        $('.click-a').on('click', function(e) {
+            e.preventDefault();
+            $(this).show('.general');
+        })
+    }
+    clickButton();
+
+   
+
 };
 
 musicmix.init = function() {
