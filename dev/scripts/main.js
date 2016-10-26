@@ -44,7 +44,6 @@ musicmix.randomIndex = function(){
     console.log(randomNumber);
 };
 
-
 //.track.lyrics.get is second endpoint that receives track id
 
 /* We need to make some sort of slider or something. Otherwise we won't
@@ -58,11 +57,11 @@ THIS FIRST, IT WILL BE GAME OVER FOR YOU, I PROMISE. :) */
 jqueryUI functionality and applies them to elements with a corresponding 
 class. To be called in the init function. */
 
-// DISPLAY EMOJI... TO BE TRIGGERED ON MOUSE CLICK LATER!
-musicmix.showLyrics = function () {
+musicmix.showLyrics = function() {
     
 };
 
+// DISPLAY EMOJI... TO BE TRIGGERED ON MOUSE CLICK LATER!
 musicmix.showEmoji = function() {
     for (var i = 127744; i <= 128591; i++) {
         // Create a Container for the Emoji
@@ -81,6 +80,10 @@ musicmix.showEmoji = function() {
 
     }
 };
+
+musicmix.showBackgrounds = function() {
+
+}
 
 // *code to be used to make items draggable. May need to adjust class name of draggable item. 
 // **Need to add containment class (area within which user will be allowed to drag item)
@@ -166,11 +169,6 @@ musicmix.events = function() {
         $('.tool-picker-third').empty();
         $('.title-third').append('<h2>Third Button Header</h2>');
     })
-
-
-
-   
-
 };
 
 musicmix.init = function() {
