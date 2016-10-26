@@ -117,6 +117,10 @@ musicmix.events = function() {
     function. Clear the draggable pane. Populate the draggable pane with html elements containing the song 
     lyrics */ 
 
+    musicmix.fullLyrics = function(data) {
+        console.log(data);
+    };
+
     /* On click of the emojis tab: Clear the draggable pane. Populate
     the draggable pane with html elements containing each of the emoji
     using the alt-codes found at:
