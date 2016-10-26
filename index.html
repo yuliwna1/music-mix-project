@@ -18,16 +18,31 @@
 	
 	<body>
 		<main class="main-window">
-		<!-- Here where the first (front-page) page goes here-->
+			<!-- Here where the first (front-page) page goes here-->
 			<div class="front-page">
 				<div class="wrapper">
 
-					
+					<h1>MusicMatch greeting-we'll make a name</h1>
+					<!-- We'll need to insert more copy explaining the concept here -->
+					<p>Choose three words for your card!</p>
+					<!-- form allows users to enter their three words and submit them -->
+					<div class="wordEntry">
+						<form action="">
+							<div class="grid frontWordEntry">
+								<input id="firstWord" type="search" placeholder="eg.">
+								<input id="secondWord" type="search" placeholder="eg.">
+								<input id="thirdWord" type="search" placeholder="eg.">
+							</div>
+							<input type="submit" value="Build my card!">
+						</form>
+					</div>
+
 				</div>
 			</div>
 
-<!-- Here where the second (canvas-page) page goes here -->
+			<!-- Here where the second (canvas-page) page goes here -->
 			<div class="canvas-page">
+
 				<div class="wrapper grid">
 					<!-- This is where the vertical left navigation bar goes -->
 					<nav class="grid">
@@ -55,25 +70,32 @@
 				</div>
 			</div>
 
-<!-- Here where the third (publish-page) page goes here-->
+			<!-- Here where the third (publish-page) page goes here-->
 			<div class="publish-page">
-					<div class="wrapper">
-								
-					</div>
-			</div>
+				<div class="wrapper">
 
-
-			
+							<figure id="finishedCard">
+						<!-- This is where we'll import the HTML canvas snapshot for users to share -->		
+							</figure>	
+						<p>Good work! This is some corny copy congratulating the user on making their card. Download your card, or better yet, share online with all yo friends</p>
+						<div class="grid publish-page-buttons">
+					<!-- 	Options for what the user can do with their card -->
+							<button>Download?</button>
+							<button>Share via twitter</button>
+						</div>
+				</div>
+			</div>	
 		</main>
 
 		<footer>
 			
 		</footer>
 
-		<script src="dev/scripts/main.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		<script src="jquery.ui.touch-punch.min.js"></script>
+
+		<script src="dev/scripts/jquery.ui.touch-punch.min.js"></script>
+		<script src="dev/scripts/main.js"></script>
 
 	</body>
 </html>
