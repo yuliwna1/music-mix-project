@@ -6,7 +6,14 @@
 		text-transform: uppercase;
 		text-align: center;
 		font-size: 5rem;
-		padding: 2% 0;
+		padding: 1% 0;
+	}
+	p {
+		color: $grey;
+		font-size:1.5rem;
+		width:50%;
+		margin:0 auto;
+		text-align: center;
 	}
 }
 
@@ -15,5 +22,21 @@
 	width: 640px;
 	height: 480px;
 	background-color: yellow;
-	margin:0 auto;
+	margin:1% auto;
+}
+
+.publish-page-buttons {
+	button {
+		color: $green;
+		font-size: 2rem;
+		margin-top:7%;
+		padding: 15px 30px;
+		background-color: $black;
+		border: 2px solid $green;
+		border-radius: 20px;
+	}
+	button:hover {
+		color:$white;
+		background-color: $green;
+	}	
 }
