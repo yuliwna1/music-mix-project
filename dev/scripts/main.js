@@ -30,8 +30,8 @@ musicmix.getLyrics = function(query) {
             },
             dataType: 'jsonp'
         }).then(function(lyrics) {
-            musicmix.fullLyrics = (lyrics.message.body.lyrics.lyrics_body);
-            musicmix.showLyrics(musicmix.fullLyrics);
+            musicmix.showLyrics(lyrics.message.body.lyrics.lyrics_body);
+            // musicmix.showLyrics(musicmix.fullLyrics);
         })
     });
 }
@@ -52,9 +52,10 @@ jqueryUI functionality and applies them to elements with a corresponding
 class. To be called in the init function. */
 
 
-// DISPLAY EMOJI... TO BE TRIGGERED ON MOUSE CLICK LATER!
+// DISPLAY LYRICS... TO BE TRIGGERED ON MOUSE CLICK LATER!
 musicmix.showLyrics = function(results) {
     console.log(results);
+    $('.title-first').text(results);
 };
 
 // DISPLAY EMOJI... TO BE TRIGGERED ON MOUSE CLICK LATER!
