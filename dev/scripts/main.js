@@ -48,6 +48,21 @@ THIS FIRST, IT WILL BE GAME OVER FOR YOU, I PROMISE. :) */
 jqueryUI functionality and applies them to elements with a corresponding 
 class. To be called in the init function. */
 
+// *code to be used to make items draggable. May need to adjust class name of draggable item. 
+// **Need to add containment class (area within which user will be allowed to drag item)
+
+// musicmix.makeDraggable = function() {
+//     $('.emojiDrag').draggable({revert:true, containment: })
+
+// }
+
+// musicmix.makeDroppable = function() {
+//     $('.card-builder').droppable({
+//         drop: function(event, ui) {
+//         }
+//      })
+// }
+
 // EVENTS //
 musicmix.events = function() {
     /* On form submit: Function that checks the values entered into three 
@@ -72,6 +87,8 @@ musicmix.init = function() {
 	// Call Functions
     musicmix.getLyrics();
 	musicmix.events();
+    // musicmix.makeDraggable ();
+    // musicmix.makeDroppable();
 };
 
 // DOCUMENT READY //
