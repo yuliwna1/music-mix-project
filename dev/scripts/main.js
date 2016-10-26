@@ -26,7 +26,7 @@ musicmix.getLyrics = function() {
 be able to show a large number of results in the draggable pane. We could
 potentially research Flickity or another slider plugin, but we need to
 make considerations for this BEFORE we begin populating the draggable 
-pane DO NOT TRY AND POPULATE THE DRAGGABLE PAIN WITHOUT DOING
+pane DO NOT TRY AND POPULATE THE DRAGGABLE PANE WITHOUT DOING
 THIS FIRST, IT WILL BE GAME OVER FOR YOU, I PROMISE. :) */
 
 /* makeDraggable(): a function that initialize the draggable & droppable 
