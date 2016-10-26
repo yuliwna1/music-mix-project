@@ -1,0 +1,19 @@
+.publish-page {
+	background-color: $black;
+	height:100vh;
+	h2 {
+		color: $green;
+		text-transform: uppercase;
+		text-align: center;
+		font-size: 5rem;
+		padding: 2% 0;
+	}
+}
+
+//not sure name of our snapshotted card class. placeholder
+#finishedCard {
+	width: 640px;
+	height: 480px;
+	background-color: yellow;
+	margin:0 auto;
+}
