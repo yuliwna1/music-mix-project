@@ -35,6 +35,20 @@ musicmix.getLyrics = function(query) {
     });
 }
 
+musicmix.getUnsplash = function() {
+    $.ajax({
+        type: 'GET',
+        url: 'https://api.unsplash.com/',
+        data: {
+            application: '858be94a69a906a1985e280e87575efd3a24899d62f8235cf1d7de7a7d855287',
+            format: 'json'
+        },
+        dataType: 'json',
+    }).then(function(img){
+        console.log('hi');
+    })
+};
+
 //.track.lyrics.get is second endpoint that receives track id
 
 /* We need to make some sort of slider or something. Otherwise we won't
