@@ -8,7 +8,7 @@ musicmix.getLyrics = function(query) {
         url: 'http://api.musixmatch.com/ws/1.1/track.search',
         data: {
             apikey: 'd1f1cb04d0c210368a40509a8dc77f76',
-            q_lyrics: searchQuery,
+            q_lyrics: query,
             format: 'jsonp',
             s_track_rating: 'desc',
         },
