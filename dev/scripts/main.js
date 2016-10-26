@@ -8,7 +8,7 @@ musicmix.getLyrics = function(query) {
         url: 'http://api.musixmatch.com/ws/1.1/track.search',
         data: {
             apikey: 'd1f1cb04d0c210368a40509a8dc77f76',
-            q_lyrics: query,
+            q_lyrics: musicmix.searchQuery,
             format: 'jsonp',
             s_track_rating: 'desc',
         },
@@ -17,7 +17,7 @@ musicmix.getLyrics = function(query) {
         console.log(info.message.body);
         var heroLyrics = (info.message.body.track_list[0].track.lyrics_id);
         musicmix.trackID = (info.message.body.track_list[0].track.track_id);
-        console.log(heroLyrics);
+        // console.log(heroLyrics);
     }).then(function(){
         $.ajax({
             type: 'GET',
@@ -29,7 +29,7 @@ musicmix.getLyrics = function(query) {
             },
             dataType: 'jsonp'
         }).then(function(lyrics) {
-            console.log(lyrics.message.body.lyrics.lyrics_body);
+            // console.log(lyrics.message.body.lyrics.lyrics_body);
             musicmix.fullLyrics = (lyrics.message.body.lyrics.lyrics_body)
         })
     });
@@ -81,7 +81,7 @@ musicmix.showEmoji = function() {
         $($emojiContainer).append($emoji);
         $('html').append($emojiContainer);
 
-        console.log('&#' + i + ';')
+        console.log('&#' + i + ';');
     }
 };
 
@@ -108,7 +108,7 @@ musicmix.events = function() {
 
 
 
-    // musicmix.lyricSearch = function(lyrics) {
+    musicmix.lyricSearch = function(lyrics) {
         $('form').on('submit', function(e) {
             e.preventDefault();
             var lyricSearch1 = $('#firstWord[type=search]').val();
@@ -116,8 +116,9 @@ musicmix.events = function() {
             var lyricSearch3 = $('#thirdWord[type=search]').val();
             var lyricString = lyricSearch1.concat(" " + lyricSearch2 + " " + lyricSearch3);
             console.log(lyricString);
+            musicmix.searchQuery = lyricString
         });
-    // }
+    }
 
     /* On click of the lyrics tab: Take the output from the getLyrics
     function. Clear the draggable pane. Populate the draggable pane with html elements containing the song 
@@ -139,6 +140,7 @@ musicmix.init = function() {
 	musicmix.events();
     // musicmix.makeDraggable ();
     // musicmix.makeDroppable();
+    musicmix.lyricSearch();
 };
 
 // DOCUMENT READY //
