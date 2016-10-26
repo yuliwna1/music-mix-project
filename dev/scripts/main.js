@@ -135,36 +135,22 @@ musicmix.events = function() {
 
     $('#click-first-button').on('click', function(e) {
         e.preventDefault();
-        $('.title-first').empty();
-        $('.title-second').empty();
-        $('.title-third').empty();
-        $('.tool-picker-first').empty();
-        $('.tool-picker-second').empty();
-        $('.tool-picker-third').empty();
+        $('.title-first, .title-second, .title-third, .tool-picker-first, .tool-picker-second, .tool-picker-third').empty();
         $('.title-first').append('<h2>First Button Header</h2>');
         musicmix.showEmoji();           
     });
 
     $('#click-second-button').on('click', function(e) {
         e.preventDefault();
-        $('.title-first').empty();
-        $('.title-second').empty();
-        $('.title-third').empty();
-        $('.tool-picker-first').empty();
-        $('.tool-picker-second').empty();
-        $('.tool-picker-third').empty();
+        $('.title-first, .title-second, .title-third, .tool-picker-first, .tool-picker-second, .tool-picker-third').empty();
         $('.title-second').append('<h2>Second Button Header</h2>');
 
     })
 
     $('#click-third-button').on('click', function(e) {
         e.preventDefault();
-        $('.title-first').empty();
-        $('.title-second').empty();
-        $('.title-third').empty();
-        $('.tool-picker-first').empty();
-        $('.tool-picker-second').empty();
-        $('.tool-picker-third').empty();
+        $('.title-first, .title-second, .title-third, .tool-picker-first, .tool-picker-second, .tool-picker-third').empty();
+
         $('.title-third').append('<h2>Third Button Header</h2>');
     })
 };
