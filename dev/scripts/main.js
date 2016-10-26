@@ -78,9 +78,21 @@ musicmix.showEmoji = function() {
     }
 };
 
-musicmix.showBackgrounds = function() {
+musicmix.showBackgrounds = function() { 
+    //Make an empty array
+    var urlGallery = [];
 
-}
+    for (var i = 0; i < 8, i++) {
+        var urlRandom = "https://unsplash.it/300/300?"+(Math.floor(Math.random()*100));
+        // console.log(urlRandom);
+    }
+
+    
+    //Everytime when I loop, I get a random image and I push it into the empty array
+    // map through array and turn into 8 DOM elements
+    //put 8 elements on the page using append
+
+};
 
 // *code to be used to make items draggable. May need to adjust class name of draggable item. 
 // **Need to add containment class (area within which user will be allowed to drag item)
