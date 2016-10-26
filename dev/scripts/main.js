@@ -3,20 +3,35 @@ var musicmix = {};
 
 // FUNCTIONS //
 musicmix.getLyrics = function() {
-	$.ajax({
+    $.ajax({
         type: 'GET',
         url: 'http://api.musixmatch.com/ws/1.1/track.search',
         data: {
             apikey: 'd1f1cb04d0c210368a40509a8dc77f76',
             q_lyrics: 'girl love yeah',
             format: 'jsonp',
+            s_track_rating: 'desc',
         },
         dataType: 'jsonp'    
     }).then(function(info) {
         console.log(info.message.body);
         var heroLyrics = (info.message.body.track_list[0].track.lyrics_id);
-        var trackID = (info.message.body.track_list[0].track.lyrics_id);
+        musicmix.trackID = (info.message.body.track_list[0].track.track_id);
         console.log(heroLyrics);
+    }).then(function(){
+        $.ajax({
+            type: 'GET',
+            url: 'http://api.musixmatch.com/ws/1.1/track.lyrics.get',
+            data: {
+                apikey: 'd1f1cb04d0c210368a40509a8dc77f76',
+                format: 'jsonp',
+                track_id: musicmix.trackID,
+            },
+            dataType: 'jsonp'
+        }).then(function(lyrics) {
+            console.log(lyrics.message.body.lyrics.lyrics_body);
+            musicmix.fullLyrics = (lyrics.message.body.lyrics.lyrics_body)
+        })
     });
 }
 
