@@ -15,7 +15,6 @@ musicmix.getLyrics = function(query) {
         dataType: 'jsonp'    
     }).then(function(info) {
         // Track ID
-        console.log(info.message.body);
         var heroLyrics = (info.message.body.track_list[0].track.lyrics_id);
         musicmix.trackID = (info.message.body.track_list[0].track.track_id);
         // console.log(heroLyrics);
@@ -31,18 +30,13 @@ musicmix.getLyrics = function(query) {
             },
             dataType: 'jsonp'
         }).then(function(lyrics) {
-            console.log(lyrics.message.body.lyrics.lyrics_body);
-            musicmix.fullLyrics = (lyrics.message.body.lyrics.lyrics_body)
+            musicmix.fullLyrics = (lyrics.message.body.lyrics.lyrics_body);
+            musicmix.showLyrics(musicmix.fullLyrics);
         })
     });
 }
 
-//get random image from unsplash
 
-musicmix.randomIndex = function(){
-    var randomNumber = Math.round(Math.random() * 1018);
-    console.log(randomNumber);
-};
 
 
 //.track.lyrics.get is second endpoint that receives track id
@@ -59,8 +53,8 @@ jqueryUI functionality and applies them to elements with a corresponding
 class. To be called in the init function. */
 
 // DISPLAY EMOJI... TO BE TRIGGERED ON MOUSE CLICK LATER!
-musicmix.showLyrics = function () {
-    
+musicmix.showLyrics = function(results) {
+    console.log(results);
 };
 
 musicmix.showEmoji = function() {
@@ -117,10 +111,6 @@ musicmix.events = function() {
     function. Clear the draggable pane. Populate the draggable pane with html elements containing the song 
     lyrics */ 
 
-    musicmix.fullLyrics = function(data) {
-        console.log(data);
-    };
-
     /* On click of the emojis tab: Clear the draggable pane. Populate
     the draggable pane with html elements containing each of the emoji
     using the alt-codes found at:
@@ -129,6 +119,12 @@ musicmix.events = function() {
     /* On click of the background tab: Take the output from a call to
     Unsplash.it. Clear the draggable pane. Populate the draggable
     pane with html elements containing photos */
+
+    //get random image from unsplash
+    musicmix.randomIndex = function(){
+        var randomNumber = Math.round(Math.random() * 1018);
+        console.log(randomNumber);
+    };
 
     // This function is responsible for clicking on nav and brings tool picker
 
