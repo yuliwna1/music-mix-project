@@ -8,17 +8,19 @@ musicmix.getLyrics = function(query) {
         url: 'http://api.musixmatch.com/ws/1.1/track.search',
         data: {
             apikey: 'd1f1cb04d0c210368a40509a8dc77f76',
-            q_lyrics: musicmix.searchQuery,
+            q_lyrics: query,
             format: 'jsonp',
             s_track_rating: 'desc',
         },
         dataType: 'jsonp'    
     }).then(function(info) {
+        // Track ID
         console.log(info.message.body);
         var heroLyrics = (info.message.body.track_list[0].track.lyrics_id);
         musicmix.trackID = (info.message.body.track_list[0].track.track_id);
         // console.log(heroLyrics);
-    }).then(function(){
+    }).then(function() {
+        // Lryics based on Track ID
         $.ajax({
             type: 'GET',
             url: 'http://api.musixmatch.com/ws/1.1/track.lyrics.get',
@@ -74,8 +76,6 @@ musicmix.showEmoji = function() {
 
         $($emojiContainer).append($emoji);
         $('html').append($emojiContainer);
-
-        console.log('&#' + i + ';');
     }
 };
 
@@ -100,19 +100,15 @@ musicmix.events = function() {
     text fields by the user, passes this values as arguments to the 
     getLyrics function: musicmix.getLyrics(word1, word2, word3) */
 
-
-
-    musicmix.lyricSearch = function(lyrics) {
-        $('form').on('submit', function(e) {
-            e.preventDefault();
-            var lyricSearch1 = $('#firstWord[type=search]').val();
-            var lyricSearch2 = $('#secondWord[type=search]').val();
-            var lyricSearch3 = $('#thirdWord[type=search]').val();
-            var lyricString = lyricSearch1.concat(" " + lyricSearch2 + " " + lyricSearch3);
-            console.log(lyricString);
-            musicmix.searchQuery = lyricString
-        });
-    }
+    $('form').on('submit', function(e) {
+        e.preventDefault();
+        var lyricSearch1 = $('#firstWord[type=search]').val();
+        var lyricSearch2 = $('#secondWord[type=search]').val();
+        var lyricSearch3 = $('#thirdWord[type=search]').val();
+        var lyricString = lyricSearch1.concat(" " + lyricSearch2 + " " + lyricSearch3);
+        
+        musicmix.getLyrics(lyricString);
+    });
 
     /* On click of the lyrics tab: Take the output from the getLyrics
     function. Clear the draggable pane. Populate the draggable pane with html elements containing the song 
@@ -130,11 +126,9 @@ musicmix.events = function() {
 
 musicmix.init = function() {
 	// Call Functions
-    musicmix.getLyrics();
 	musicmix.events();
     // musicmix.makeDraggable ();
     // musicmix.makeDroppable();
-    musicmix.lyricSearch();
 };
 
 // DOCUMENT READY //
