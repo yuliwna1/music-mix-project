@@ -31,7 +31,7 @@ THIS FIRST, IT WILL BE GAME OVER FOR YOU, I PROMISE. :) */
 
 /* makeDraggable(): a function that initialize the draggable & droppable 
 jqueryUI functionality and applies them to elements with a corresponding 
-class. To be called in the init function. 
+class. To be called in the init function. */
 
 // EVENTS //
 musicmix.events = function() {
