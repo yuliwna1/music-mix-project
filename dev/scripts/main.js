@@ -29,7 +29,7 @@ musicmix.getLyrics = function(query) {
             },
             dataType: 'jsonp'
         }).then(function(lyrics) {
-            // console.log(lyrics.message.body.lyrics.lyrics_body);
+            console.log(lyrics.message.body.lyrics.lyrics_body);
             musicmix.fullLyrics = (lyrics.message.body.lyrics.lyrics_body)
         })
     });
