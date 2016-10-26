@@ -75,7 +75,13 @@ musicmix.showEmoji = function() {
         $emoji.html('&#' + i + ';');
 
         $($emojiContainer).append($emoji);
+
+        $('.tool-picker-first').append($emojiContainer);
+
+        console.log('&#' + i + ';');
+=======
         $('html').append($emojiContainer);
+
     }
 };
 
@@ -122,6 +128,29 @@ musicmix.events = function() {
     /* On click of the background tab: Take the output from a call to
     Unsplash.it. Clear the draggable pane. Populate the draggable
     pane with html elements containing photos */
+
+    // This function is responsible for clicking on nav and brings tool picker
+
+    $('#click-first-button').on('click', function(e) {
+        e.preventDefault();
+        $('.title-first').empty();
+        $('.tool-picker-first').empty();
+        $('.title-first').append('<h2>First Button Header</h2>');
+        musicmix.showEmoji();
+            
+    });
+
+    // function clickButton() {
+    //     $('.general').hide();
+    //     $('.click-a').on('click', function(e) {
+    //         e.preventDefault();
+    //         $(this).show('.general');
+    //     })
+    // }
+    // clickButton();
+
+   
+
 };
 
 musicmix.init = function() {

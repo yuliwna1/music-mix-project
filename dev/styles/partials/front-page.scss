@@ -1,4 +1,12 @@
 .front-page {
+	height: 100vh;
+	text-align: center;
+	h1 {
+		font-family: "Roberto", sans-serif;
+		font-size: 6rem;
+		color: $green;
+	}
+
 	background-color: $black;
 	height: 100vh;
 	text-align: center;
@@ -54,4 +62,5 @@
 		color:$white;
 		background-color: $green;
 	}
+
 }
