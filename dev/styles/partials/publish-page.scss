@@ -1,20 +1,25 @@
 .publish-page {
 	background-color: $black;
 	height:100vh;
-	h2 {
-		color: $green;
-		text-transform: uppercase;
-		text-align: center;
-		font-size: 5rem;
-		padding: 1% 0;
-	}
-	p {
-		color: $grey;
-		font-size:1.5rem;
-		width:50%;
-		margin:0 auto;
-		text-align: center;
-	}
+		.gridLeft {
+			width:59%;
+		}
+		.gridRight {
+			width: 40%;
+			margin-top:10%;
+		}
+		h2 {
+			color: $green;
+			text-transform: uppercase;
+			// text-align: center;
+			font-size: 5rem;
+			padding: 1% 0;
+		}
+		p {
+			color: $grey;
+			font-size:1.5rem;
+			margin:0 auto;
+		}
 }
 
 //not sure name of our snapshotted card class. placeholder
@@ -22,14 +27,15 @@
 	width: 640px;
 	height: 480px;
 	background-color: yellow;
-	margin:1% auto;
+	margin:2% auto;
 }
 
-.publish-page-buttons {
+.publish-page {
+	margin:0 auto;
 	button {
+		display: block;
 		color: $green;
 		font-size: 2rem;
-		margin-top:7%;
 		padding: 15px 30px;
 		background-color: $black;
 		border: 2px solid $green;
