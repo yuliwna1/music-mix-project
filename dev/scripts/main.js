@@ -8,7 +8,7 @@ musicmix.getLyrics = function(query) {
         url: 'http://api.musixmatch.com/ws/1.1/track.search',
         data: {
             apikey: 'd1f1cb04d0c210368a40509a8dc77f76',
-            q_lyrics: query,
+            q_lyrics: musicmix.searchQuery,
             format: 'jsonp',
             s_track_rating: 'desc',
         },
@@ -17,7 +17,7 @@ musicmix.getLyrics = function(query) {
         console.log(info.message.body);
         var heroLyrics = (info.message.body.track_list[0].track.lyrics_id);
         musicmix.trackID = (info.message.body.track_list[0].track.track_id);
-        console.log(heroLyrics);
+        // console.log(heroLyrics);
     }).then(function(){
         $.ajax({
             type: 'GET',
@@ -29,7 +29,7 @@ musicmix.getLyrics = function(query) {
             },
             dataType: 'jsonp'
         }).then(function(lyrics) {
-            console.log(lyrics.message.body.lyrics.lyrics_body);
+            // console.log(lyrics.message.body.lyrics.lyrics_body);
             musicmix.fullLyrics = (lyrics.message.body.lyrics.lyrics_body)
         })
     });
@@ -62,24 +62,26 @@ THIS FIRST, IT WILL BE GAME OVER FOR YOU, I PROMISE. :) */
 jqueryUI functionality and applies them to elements with a corresponding 
 class. To be called in the init function. */
 
+// DISPLAY EMOJI... TO BE TRIGGERED ON MOUSE CLICK LATER!
+musicmix.showLyrics = function () {
+    
+};
+
 musicmix.showEmoji = function() {
     for (var i = 127744; i <= 128591; i++) {
-        // Emoji Index
-        emojiIndex = i.toString();
-
-        // Create a container for the emoji
+        // Create a Container for the Emoji
         var $emojiContainer = $('<div>');
         $emojiContainer.addClass('grid-cell emoji-container');
     
         // Create The Emoji
-        var $emoji = $('<i>');
+        var $emoji = $('<article>');
         $emoji.addClass('emoji');
-        $emoji.text('&#' + emojiIndex + ';');
+        $emoji.html('&#' + i + ';');
 
         $($emojiContainer).append($emoji);
         $('html').append($emojiContainer);
 
-        console.log('&#' + emojiIndex + ';')
+        console.log('&#' + i + ';');
     }
 };
 
@@ -87,7 +89,7 @@ musicmix.showEmoji = function() {
 // **Need to add containment class (area within which user will be allowed to drag item)
 
 // musicmix.makeDraggable = function() {
-//     $('i').draggable({revert:true, containment: })
+//     $('.emoji').draggable({revert:true})
 
 // }
 
@@ -106,7 +108,7 @@ musicmix.events = function() {
 
 
 
-    // musicmix.lyricSearch = function(lyrics) {
+    musicmix.lyricSearch = function(lyrics) {
         $('form').on('submit', function(e) {
             e.preventDefault();
             var lyricSearch1 = $('#firstWord[type=search]').val();
@@ -114,8 +116,9 @@ musicmix.events = function() {
             var lyricSearch3 = $('#thirdWord[type=search]').val();
             var lyricString = lyricSearch1.concat(" " + lyricSearch2 + " " + lyricSearch3);
             console.log(lyricString);
+            musicmix.searchQuery = lyricString
         });
-    // }
+    }
 
     /* On click of the lyrics tab: Take the output from the getLyrics
     function. Clear the draggable pane. Populate the draggable pane with html elements containing the song 
@@ -132,14 +135,21 @@ musicmix.events = function() {
 
     // This function is responsible for clicking on nav and brings tool picker
 
-    function clickButton() {
-        $('.general').hide();
-        $('.click-a').on('click', function(e) {
-            e.preventDefault();
-            $(this).show('.general');
-        })
-    }
-    clickButton();
+    $('#click-first-button').on('click', function() {
+        $('.general').clear();
+        $('.title').append('<h2>First Button Header</h2>');
+
+            
+    });
+
+    // function clickButton() {
+    //     $('.general').hide();
+    //     $('.click-a').on('click', function(e) {
+    //         e.preventDefault();
+    //         $(this).show('.general');
+    //     })
+    // }
+    // clickButton();
 
    
 
@@ -151,6 +161,7 @@ musicmix.init = function() {
 	musicmix.events();
     // musicmix.makeDraggable ();
     // musicmix.makeDroppable();
+    musicmix.lyricSearch();
 };
 
 // DOCUMENT READY //
