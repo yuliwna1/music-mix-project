@@ -5,17 +5,18 @@
 			width:59%;
 		}
 		.gridRight {
-			width: 40%;
+			width: 35%;
 			margin-top:10%;
 		}
 		h2 {
 			color: $green;
 			text-transform: uppercase;
-			// text-align: center;
+			text-align: center;
 			font-size: 5rem;
-			padding: 1% 0;
+			padding: 2% 0;
 		}
 		p {
+			text-align: center;
 			color: $grey;
 			font-size:1.5rem;
 			margin:0 auto;
@@ -33,10 +34,12 @@
 .publish-page {
 	margin:0 auto;
 	button {
+		margin:5% auto;
 		display: block;
 		color: $green;
 		font-size: 2rem;
-		padding: 15px 30px;
+		width:50%;
+		padding: 15px 0;
 		background-color: $black;
 		border: 2px solid $green;
 		border-radius: 20px;
@@ -45,4 +48,17 @@
 		color:$white;
 		background-color: $green;
 	}	
+}
+
+.publishButtons {
+	margin-top: 10%;
+}
+
+footer {
+	margin-top:3%;
+	text-align: center;
+	a {
+		color:white;
+		text-decoration: none;
+	}
 }
