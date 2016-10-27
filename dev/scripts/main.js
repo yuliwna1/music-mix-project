@@ -36,10 +36,6 @@ musicmix.getLyrics = function(query) {
     });
 }
 
-
-
-
-
 //.track.lyrics.get is second endpoint that receives track id
 
 /* We need to make some sort of slider or something. Otherwise we won't
@@ -66,8 +62,8 @@ musicmix.showLyrics = function splitString(results) {
         // append string to lyricsContainer
         $($lyricsContainer).append($lyricsArray[i]);
         // append lyricsContainer to DOM
-        $('.tool-picker-second').append($lyricsContainer);
-        $('tool-picker-second').append($lyricsContainer);
+        $('.decorative-objects').append($lyricsContainer);
+        $('decorative-objects').append($lyricsContainer);
     };
     console.log($lyricsArray);
     musicmix.drag();
@@ -88,8 +84,8 @@ musicmix.showEmoji = function() {
 
         $($emojiContainer).append($emoji);
 
-        $('.tool-picker-first').append($emojiContainer);
-        $('tool-picker-first').append($emojiContainer);
+        $('.decorative-objects').append($emojiContainer);
+        $('decorative-objects').append($emojiContainer);
 
     }
     //calls drag and drop functions once emoji's are populated dynamically
@@ -140,7 +136,7 @@ musicmix.drag = function(drag) {
 
 
 musicmix.drop = function(drop) {
-    $('.card-builder').droppable({
+    $('.canvas').droppable({
         drop:function(event,ui) {
             $(this).append($(ui.helper).clone());
             $('.emoji').append({
@@ -154,8 +150,8 @@ musicmix.drop = function(drop) {
 }
 
 // reset canvas on click of 'reset' button
-$('.reset').on('click', function(){
-    $('.card-builder').empty();
+$('#reset').on('click', function(){
+    $('.canvas').empty();
 });
 
 
@@ -169,6 +165,7 @@ musicmix.events = function() {
     getLyrics function: musicmix.getLyrics(word1, word2, word3) */
 
     $('form').on('submit', function(e) {
+        console.log('form is working')
         e.preventDefault();
         var lyricSearch1 = $('#firstWord[type=search]').val();
         var lyricSearch2 = $('#secondWord[type=search]').val();
@@ -199,49 +196,48 @@ musicmix.events = function() {
 
     // This function is responsible for clicking on nav and brings tool picker
 
-    $('#click-first-button').on('click', function(e) {
-        e.preventDefault();
-        $('.title-first, .title-second, .title-third, .tool-picker-first, .tool-picker-second, .tool-picker-third').empty();
-        $('.title-first').append('<h2>First Button Header</h2>');
-        musicmix.showEmoji();           
+    $('#lyricButton').on('click', function(e) {
+        $('.decorative-objects').empty();
+        musicmix.showLyrics();           
     });
 
-    $('#click-second-button').on('click', function(e) {
-        e.preventDefault();
-        $('.title-first, .title-second, .title-third, .tool-picker-first, .tool-picker-second, .tool-picker-third').empty();
-        $('.title-second').append('<h2>Second Button Header</h2>');
-
+    $('#emojiButton').on('click', function(e) {
+        $('.decorative-objects').empty();
+        musicmix.showEmoji();
     })
 
-    $('#click-third-button').on('click', function(e) {
-        e.preventDefault();
-        $('.title-first, .title-second, .title-third, .tool-picker-first, .tool-picker-second, .tool-picker-third').empty();
-
-        $('.title-third').append('<h2>Third Button Header</h2>');
+    $('#bgButton').on('click', function(e) {
+        $('.decorative-objects').empty();
 
         //put 8 <img> elements from unsplash on the page using append
-        $('.tool-picker-third').append(musicmix.showBackgrounds());
+        $('.decorative-objects').append(musicmix.showBackgrounds());
 
 
-        $('.tool-picker-third').on('click', 'img', function() {
+        $('.decorative-objects').on('click', 'img', function() {
             console.log('TEST');
-            $('.card-builder').css({'background': `url('${this.src}')`, 'background-repeat': 'no-repeat', 'background-size': 'cover'});         
+            $('.canvas').css({'background': `url('${this.src}')`, 'background-repeat': 'no-repeat', 'background-size': 'cover'});         
         });
     })
 
     //When a user clicks on "submit button", a canvas is created
 
+
     $('.publishBtn').on('click', function() {
         html2canvas($('.canvas'), {
             onrendered: function(canvas) {
             $('.canvas-cell').append(canvas);
+
+    $('#publish').on('click', function() {
+        html2canvas(document.getElementsByClassName('canvas'), {
+            onrendered: function(canvas) {
+            document.getElementById('canvas').appendChild(canvas);
+
             }
         });
     });
     
 // then(function(canvas) {
 //             document.getElementById('card-builder').append(canvas);
-
 };
 
 musicmix.init = function() {
