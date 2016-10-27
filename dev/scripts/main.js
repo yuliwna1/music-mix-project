@@ -97,23 +97,30 @@ musicmix.showBackgrounds = function() {
 }
 
 
-//makes emoji's draggable 
+
+
 musicmix.drag = function(drag) {
     $('.emoji').draggable({
-        revert:"invalid",
-        containment:'.canvas-page'})
-};
-
-//makes card droppable 
-musicmix.drop = function(drop) {
-    $('.card-builder').droppable({
-        drop:function(event,ui){
-
-        }
+        revert:'invalid',
+        containment:'.canvas-page',
+        helper:'clone'
     });
 }
 
 
+musicmix.drop = function(drop) {
+    $('.card-builder').droppable({
+        drop:function(event,ui) {
+            $(this).append($(ui.helper).clone());
+            $('.emoji').append({
+                top:0,
+                left:0
+            })
+        }
+    })
+}
+
+ 
 
 // EVENTS //
 musicmix.events = function() {
