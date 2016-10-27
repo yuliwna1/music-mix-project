@@ -215,6 +215,20 @@ musicmix.events = function() {
             $('.card-builder').css({'background': `url('${this.src}')`, 'background-repeat': 'no-repeat', 'background-size': 'cover'});         
         });
     })
+
+    //When a user clicks on "submit button", a canvas is created
+
+    $('#createCanvas').on('click', function() {
+        html2canvas(document.getElementsByClassName('card-builder'), {
+            onrendered: function(canvas) {
+            document.getElementById('card-builder').appendChild(canvas);
+            }
+        });
+    });
+    
+// then(function(canvas) {
+//             document.getElementById('card-builder').append(canvas);
+
 };
 
 musicmix.init = function() {
