@@ -78,19 +78,34 @@ musicmix.showEmoji = function() {
     }
 };
 
+//Creating unsplash function (random links from unsplash).
+
 musicmix.showBackgrounds = function() { 
     //Make an empty array
     var urlGallery = [];
 
-    for (var i = 0; i < 8, i++) {
+    console.log("testing");
+
+    for (var i = 0; i < 8; i++) {
         var urlRandom = "https://unsplash.it/300/300?"+(Math.floor(Math.random()*100));
-        // console.log(urlRandom);
+         //Everytime when I loop, I get a random image and I push it into the empty array
+        urlGallery.push(`https://source.unsplash.com/random/300x300?sig=${urlRandom}`);
     }
 
-    
-    //Everytime when I loop, I get a random image and I push it into the empty array
     // map through array and turn into 8 DOM elements
-    //put 8 elements on the page using append
+    var images = urlGallery.map(function(urlName) {
+        return $(`<img src="${urlName}"/>`);
+    });
+    console.log(images); 
+    console.log("url", urlGallery);  
+    return images;
+
+    //I should put these images in the container in order to be able to click on it
+
+
+    //Change background of div card-builder
+
+
 
 };
 
@@ -165,12 +180,23 @@ musicmix.events = function() {
         $('.title-first, .title-second, .title-third, .tool-picker-first, .tool-picker-second, .tool-picker-third').empty();
 
         $('.title-third').append('<h2>Third Button Header</h2>');
+
+        //put 8 <img> elements from unsplash on the page using append
+        $('.tool-picker-third').append(musicmix.showBackgrounds());
+
+
+        $('.tool-picker-third').on('click', 'img', function() {
+            console.log('TEST');
+            $('.card-builder').css({'background': `url('${this.src}')`, 'background-repeat': 'no-repeat', 'background-size': 'cover'});         
+        });
     })
 };
 
 musicmix.init = function() {
 	// Call Functions
 	musicmix.events();
+     musicmix.randomIndex();
+     musicmix.showBackgrounds();
     // musicmix.makeDraggable ();
     // musicmix.makeDroppable();
 };
