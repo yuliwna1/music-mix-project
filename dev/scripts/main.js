@@ -103,9 +103,9 @@ musicmix.showBackgrounds = function() {
     console.log("testing");
 
     for (var i = 0; i < 8; i++) {
-        var urlRandom = "https://unsplash.it/300/300?"+(Math.floor(Math.random()*100));
+        var urlRandom = "https://unsplash.it/640/480?"+(Math.floor(Math.random()*100));
          //Everytime when I loop, I get a random image and I push it into the empty array
-        urlGallery.push(`https://source.unsplash.com/random/300x300?sig=${urlRandom}`);
+        urlGallery.push(`https://source.unsplash.com/random/640x480?sig=${urlRandom}`);
     }
 
     // map through array and turn into 8 DOM elements
