@@ -150,6 +150,15 @@ musicmix.drop = function(drop) {
     })
 }
 
+// reset canvas on click of 'reset' button
+$('.reset').on('click', function(){
+    $('.card-builder').empty();
+});
+
+
+// return to front page
+
+ 
 // EVENTS //
 musicmix.events = function() {
     /* On form submit: Function that checks the values entered into three 
