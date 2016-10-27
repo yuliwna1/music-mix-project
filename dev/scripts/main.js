@@ -128,6 +128,7 @@ musicmix.drag = function(drag) {
         revert:'invalid',
         helper:'clone',
         containment:'.canvas-page'});
+
     $('.lyrics').draggable({
         revert:"invalid",
         helper:'clone',
@@ -158,7 +159,6 @@ $('.reset').on('click', function(){
 // return to front page
 
  
-
 // EVENTS //
 musicmix.events = function() {
     /* On form submit: Function that checks the values entered into three 
