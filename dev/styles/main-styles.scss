@@ -1,16 +1,14 @@
 // Normalize & Custom Defaults
 @import "partials/general-styles";
+
 // Variables
 @import "partials/variables";
-//Style for front page
-@import "partials/front-page.scss";
-//Style for canvas page
-@import "partials/canvas-page.scss";
-//Style for publish page
-@import "partials/publish-page.scss";
 
-.emoji {
-	transform: scale(5);
-	padding: 500px 0;
-	width: 0;
-}
+// Front Page Styles
+@import "partials/front-page";
+
+// Canvas Page Styles
+@import "partials/canvas-page";
+
+// Publish Page Styles
+@import "partials/publish-page";

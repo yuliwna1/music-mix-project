@@ -53,9 +53,21 @@ class. To be called in the init function. */
 
 
 // DISPLAY LYRICS... TO BE TRIGGERED ON MOUSE CLICK LATER!
-musicmix.showLyrics = function(results) {
-    console.log(results);
-    $('.title-first').text(results);
+// split lyrics into an array, loop thru, display on page
+musicmix.showLyrics = function splitString(results) {
+    var $lyricsArray = results.split('\n');
+    $lyricsArray.splice($lyricsArray.length-4)
+    for (var i = 0; i < $lyricsArray.length; i++) {
+        // create container for lyrics
+        var $lyricsContainer = $('<h3>');
+        $lyricsContainer.addClass('grid-cell');
+        // append string to lyricsContainer
+        $($lyricsContainer).append($lyricsArray[i]);
+        // append lyricsContainer to DOM
+        $('.tool-picker-second').append($lyricsContainer);
+        $('tool-picker-second').append($lyricsContainer);
+    };
+    console.log($lyricsArray);
 };
 
 // DISPLAY EMOJI... TO BE TRIGGERED ON MOUSE CLICK LATER!
@@ -76,6 +88,8 @@ musicmix.showEmoji = function() {
         $('tool-picker-first').append($emojiContainer);
 
     }
+    musicmix.drag();
+    musicmix.drop();
 };
 
 //Creating unsplash function (random links from unsplash).
@@ -109,20 +123,24 @@ musicmix.showBackgrounds = function() {
 
 };
 
-// *code to be used to make items draggable. May need to adjust class name of draggable item. 
-// **Need to add containment class (area within which user will be allowed to drag item)
 
-// musicmix.makeDraggable = function() {
-//     $('.emoji').draggable({revert:true})
+//makes emoji's draggable 
+musicmix.drag = function(drag) {
+    $('.emoji').draggable({
+        revert:"invalid",
+        containment:'.canvas-page'})
+};
 
-// }
+//makes card droppable 
+musicmix.drop = function(drop) {
+    $('.card-builder').droppable({
+        drop:function(event,ui){
 
-// musicmix.makeDroppable = function() {
-//     $('.card-builder').droppable({
-//         drop: function(event, ui) {
-//         }
-//      })
-// }
+        }
+    });
+}
+
+
 
 // EVENTS //
 musicmix.events = function() {
@@ -194,11 +212,11 @@ musicmix.events = function() {
 
 musicmix.init = function() {
 	// Call Functions
-	musicmix.events();
-     musicmix.randomIndex();
+	musicmix.events();    
      musicmix.showBackgrounds();
     // musicmix.makeDraggable ();
     // musicmix.makeDroppable();
+
 };
 
 // DOCUMENT READY //
