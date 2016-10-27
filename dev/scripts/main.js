@@ -115,40 +115,50 @@ musicmix.showBackgrounds = function() {
     console.log(images); 
     console.log("url", urlGallery);  
     return images;
-
+    };
     //I should put these images in the container in order to be able to click on it
 
 
     //Change background of div card-builder
 
 
-
-};
-
-//makes lyrics draggable
-
-
 //makes emoji's and lyrics draggable 
 musicmix.drag = function(drag) {
     $('.emoji').draggable({
-        revert:"invalid",
+        revert:'invalid',
+        helper:'clone',
         containment:'.canvas-page'});
+
     $('.lyrics').draggable({
         revert:"invalid",
+        helper:'clone',
         containment:'.canvas-page'});
 };
 
-//makes card droppable 
+
 musicmix.drop = function(drop) {
     $('.card-builder').droppable({
-        drop:function(event,ui){
-
+        drop:function(event,ui) {
+            $(this).append($(ui.helper).clone());
+            $('.emoji').append({
+                top:0,
+                left:0
+            })
+            $('.emoji').draggable();
+            $('.lyrics').draggable();
         }
-    });
+    })
 }
 
+// reset canvas on click of 'reset' button
+$('.reset').on('click', function(){
+    $('.card-builder').empty();
+});
 
 
+// return to front page
+
+ 
 // EVENTS //
 musicmix.events = function() {
     /* On form submit: Function that checks the values entered into three 
@@ -234,10 +244,7 @@ musicmix.events = function() {
 musicmix.init = function() {
 	// Call Functions
 	musicmix.events();    
-     musicmix.showBackgrounds();
-    // musicmix.makeDraggable ();
-    // musicmix.makeDroppable();
-
+    musicmix.showBackgrounds();
 };
 
 // DOCUMENT READY //
