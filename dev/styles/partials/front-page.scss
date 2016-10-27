@@ -1,63 +1,56 @@
 .front-page {
-	height: 100vh;
 	text-align: center;
+	
 	h1 {
 		font-family: "Roberto", sans-serif;
-		font-size: 6rem;
-		color: $green;
-	}
-
-	background-color: $black;
-	height: 100vh;
-	text-align: center;
-	h1 {
 		font-size: 8rem;
-		color: $green;
 		text-transform: uppercase;
-		padding-top:18%;
+		color: $green;
 	}
+	
 	p {
-		color:$grey;
 		font-size: 3rem;
+		color: $grey;
 	}
 
 }
 
-//styling for the lyrics input area
-
 .lyricsEntry {
-	width:60%;
+	width: 60%;
 	margin: 0 auto;
+	
 	input {
-		background: rgba(255,255,255,0.3);
-		border-radius: 5px;
 		margin-top: 5%;
-		width: 30%;
 		padding: 5px;
+		width: 30%;
 		font-size: 2rem;
 		border: none;
+		border-radius: 5px;
 		color: $grey;
 		outline: $green;
+		background: rgba(255, 255, 255, 0.3);
 	}
+	
 	//changes outline colour to green instead of default blue
 	input:focus {
 		outline: none;
   		border-color: #FF0000;
- 		 box-shadow: inset 0 1px 10px rgba(111, 226, 151, 0.7), 0 0 12px rgba(111, 226, 151, 1);
+ 		box-shadow: inset 0 1px 10px rgba(111, 226, 151, 0.7), 0 0 12px rgba(111, 226, 151, 1);
 	}
 }
 
 //styling for submit button--would like to try out "inset border" for hover state
 .wordEntry {
 	input[type=submit] {
-		color: $green;
 		font-size: 2rem;
-		margin-top:7%;
+		margin-top: 7%;
 		padding: 15px 30px;
 		background-color: $black;
 		border: 2px solid $green;
+		color: $green;
 		border-radius: 20px;
 	}
+	
 	input[type=submit]:hover {
 		color:$white;
 		background-color: $green;

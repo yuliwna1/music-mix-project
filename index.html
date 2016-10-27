@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 	<head>
 		<!-- Meta Tags -->
@@ -34,117 +33,154 @@
 	</head>
 	
 	<body>
-		<main class="main-window">
-			<!-- Here where the first (front-page) page goes here-->
-			<div class="front-page">
-				<div class="wrapper">
-					<h1>&#127925; MusicMatch</h1>
-					<!-- We'll need to insert more copy explaining the concept here -->
-					<p>Choose three words for your card!</p>
-					<!-- form allows users to enter their three words and submit them -->
-					<div class="wordEntry">
-						<form action="">
-							<div class="grid lyricsEntry">
-								<input id="firstWord" type="search" placeholder="first word">
-								<input id="secondWord" type="search" placeholder="second word">
-								<input id="thirdWord" type="search" placeholder="third word">
-							</div>
-							<input type="submit" value="Build my card!">
-						</form>
-					</div>
-				</div>
-			</div>
-
-			<!-- Here where the second (canvas-page) page goes here -->
-			<div class="canvas-page">
+		<!-- APP -->
+		<main class="app-window">
+			<!-- ENTRY PAGE -->
+			<section class="entry-page">
 				<div class="wrapper grid">
-					<!-- This is where the vertical left navigation bar goes -->
+					<h1>&#127925; MusicMatch</h1>
+					<p>Choose three words for your card!</p>
+
+					<form class="grid">
+						<input id="firstWord" type="search" placeholder="First Word">
+						<input id="secondWord" type="search" placeholder="Second Word">
+						<input id="thirdWord" type="search" placeholder="Third Word">
+					</form>
+
+					<div class="main-btn">
+						<input class="btn" type="submit" value="Make My Card!">
+					</div>
+				</div>		
+			</section>
+
+			<!-- CANVAS PAGE -->
+			<section class="canvas-page grid">
+				<aside class="categories">
 					<nav class="grid">
-						<div class="logo">
-							<i class="fa fa-search" aria-hidden="true"></i></i>
-						</div>
+						<button>
+							<h1>&#127925;</h1>
+						</button>
 
-						<ul class="vertical-nav">
-							<li id="click-first-button"><a href=""><i class="fa fa-search" aria-hidden="true"></i></a></li>
-							<li id="click-second-button"><a href=""><i class="fa fa-search" aria-hidden="true"></i></a></li>
-							<li id="click-third-button"><a href=""><i class="fa fa-search" aria-hidden="true"></i></a></li>
-						</ul>
+						<button class="active">
+							<i class="fa fa-book"></i>
+							<p>Lyrics</p>
+						</button>
+						
+						<button>
+							<i class="fa fa-smile-o"></i>
+							<p>Emoji</p>
+						</button>
+
+						<button>
+							<i class="fa fa-picture-o"></i>
+							<p>Background</p>
+						</button>
 					</nav>
+				</aside>
 
-					<!-- This is where the selection menu goes -->
-					<section class="selection-menu">
-						<article class="general first-button">
-							<div class="title-first">
-	
-							</div>
+				<aside class="decorative-objects">
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>	
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+					<h1>Hello</h1>
+				</aside>
 
-							<div class="tool-picker-first">
-								
-							</div>
-						</article>
+				<div class="canvas-area grid">
+					<div class="canvas"></div>
 
-						<article class="general second-button">
-							<div class="title-second">
-								
-							</div>
+					<div class="canvas-btns grid">
+						<button class="btn">
+							New Lyrics
+						</button>
 
-							<div class="tool-picker-second">
-								
-							</div>
-						</article>
+						<button class="btn">
+							Clear Canvas
+						</button>
 
-						<article class="general third-button">
-							<div class="title-third">
-								
-							</div>
-
-							<div class="tool-picker-third">
-								
-							</div>
-						</article>
-						
-					</section>
-
-					<!-- This is where the main card creator/maker goes -->
-					<section class="card-creator">
-						<div class="card-builder">
-							
-						</div>
-
-						<div class="card-creator-buttons">
-							<button>Change</button>
-							<button>Submit</button>
-							<button>Go back</button>
-						</div>
-						
-					</section>
-					
+						<button class="btn">
+							Publish
+						</button>
+					</div>
 				</div>
-			</div>
+			</section>
 
-			<!-- Here where the third (publish-page) page goes here-->
-			<div class="publish-page">
-				<div class="wrapper">
-					<h2>Done card yo</h2>
-					<div class="grid">
-						<div class="gridLeft">
-							<figure id="finishedCard">
-							<!-- This is where we'll import the HTML canvas snapshot for users to share -->		
-							</figure>
+			<!-- PUBLISH PAGE -->
+			<section class="publish-page">
+				<div class="wrapper grid">
+					<h2>Finished TextTune!</h2>
+
+					<div class="publish-content grid">
+						<div class="grid-cell">
+							<img class="canvas-placeholder" src="http://placehold.it/640x480">
 						</div>
-						<div class="gridRight">
+
+						<div class="grid-cell">
 							<p>Good work! This is some corny copy congratulating the user on making their card. Download your card, or better yet, share online with all yo friends.</p>
-							<!-- Options for what the user can do with their card -->
-							<div class="publishButtons">
-								<button>Download?</button>
-								<button>Share via twitter</button>
-							</div>
+							<div class="publish-btns">
+								<button class="btn">Download</button>
+								<button class="btn">Tweet</button>
+							</div>	
 						</div>
 					</div>
 				</div>
-			</div>	
-		</main>
-	
+			</section>
+		</main>	
+
 		<!-- jQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		
