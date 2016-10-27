@@ -231,10 +231,10 @@ musicmix.events = function() {
 
     //When a user clicks on "submit button", a canvas is created
 
-    $('#createCanvas').on('click', function() {
-        html2canvas(document.getElementsByClassName('card-builder'), {
+    $('.publishBtn').on('click', function() {
+        html2canvas($('.canvas'), {
             onrendered: function(canvas) {
-            document.getElementById('card-builder').appendChild(canvas);
+            $('.canvas-cell').append(canvas);
             }
         });
     });
