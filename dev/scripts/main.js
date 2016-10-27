@@ -128,6 +128,7 @@ musicmix.drag = function(drag) {
         revert:'invalid',
         helper:'clone',
         containment:'.canvas-page'});
+
     $('.lyrics').draggable({
         revert:"invalid",
         helper:'clone',
@@ -148,8 +149,6 @@ musicmix.drop = function(drop) {
         }
     })
 }
-
- 
 
 // EVENTS //
 musicmix.events = function() {
