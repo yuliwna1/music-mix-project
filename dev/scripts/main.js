@@ -76,26 +76,32 @@ musicmix.showEmoji = function() {
         $('tool-picker-first').append($emojiContainer);
 
     }
+    musicmix.drag();
+    musicmix.drop();
 };
 
 musicmix.showBackgrounds = function() {
 
 }
 
-// *code to be used to make items draggable. May need to adjust class name of draggable item. 
-// **Need to add containment class (area within which user will be allowed to drag item)
 
-// musicmix.makeDraggable = function() {
-//     $('.emoji').draggable({revert:true})
+//makes emoji's draggable 
+musicmix.drag = function(drag) {
+    $('.emoji').draggable({
+        revert:"invalid",
+        containment:'.canvas-page'})
+};
 
-// }
+//makes card droppable 
+musicmix.drop = function(drop) {
+    $('.card-builder').droppable({
+        drop:function(event,ui){
 
-// musicmix.makeDroppable = function() {
-//     $('.card-builder').droppable({
-//         drop: function(event, ui) {
-//         }
-//      })
-// }
+        }
+    });
+}
+
+
 
 // EVENTS //
 musicmix.events = function() {
@@ -159,8 +165,6 @@ musicmix.events = function() {
 musicmix.init = function() {
 	// Call Functions
 	musicmix.events();
-    // musicmix.makeDraggable ();
-    // musicmix.makeDroppable();
 };
 
 // DOCUMENT READY //
