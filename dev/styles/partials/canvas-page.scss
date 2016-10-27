@@ -55,14 +55,19 @@ article.first-button {
 		margin: 0 auto;
 		margin-top: 3%;
 	}
-	.tool-picker {
-		width: 200px;
-		height: 200px;
-		border: 1px solid blue;
-		margin: 0 auto;
-		margin-top: 3%;
-	}
 }
+
+.tool-picker-first {
+	overflow-y: auto;
+	height: 250px;
+}
+
+// .tool-picker-third {
+// 	img {
+// 		width: 250px;
+// 		height: 250px;
+// 	}
+// }
 
 // This is where the main card creator/maker goes
 
@@ -72,8 +77,8 @@ section.card-creator {
 	.card-builder {
 		border: 1px solid black;
 		background: yellow;
-		width: 600px;
-		height: 300px;
+		width: 640px;
+		height: 480px;
 		margin: 0 auto;
 		margin-top: 3%;
 	}
