@@ -53,9 +53,21 @@ class. To be called in the init function. */
 
 
 // DISPLAY LYRICS... TO BE TRIGGERED ON MOUSE CLICK LATER!
-musicmix.showLyrics = function(results) {
-    console.log(results);
-    $('.title-first').text(results);
+// split lyrics into an array, loop thru, display on page
+musicmix.showLyrics = function splitString(results) {
+    var $lyricsArray = results.split('\n');
+    $lyricsArray.splice($lyricsArray.length-4)
+    for (var i = 0; i < $lyricsArray.length; i++) {
+        // create container for lyrics
+        var $lyricsContainer = $('<h3>');
+        $lyricsContainer.addClass('grid-cell');
+        // append string to lyricsContainer
+        $($lyricsContainer).append($lyricsArray[i]);
+        // append lyricsContainer to DOM
+        $('.tool-picker-second').append($lyricsContainer);
+        $('tool-picker-second').append($lyricsContainer);
+    };
+    console.log($lyricsArray);
 };
 
 // DISPLAY EMOJI... TO BE TRIGGERED ON MOUSE CLICK LATER!
