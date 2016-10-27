@@ -60,7 +60,7 @@ musicmix.showLyrics = function splitString(results) {
     for (var i = 0; i < $lyricsArray.length; i++) {
         // create container for lyrics
         var $lyricsContainer = $('<h3>');
-        $lyricsContainer.addClass('grid-cell');
+        $lyricsContainer.addClass('grid-cell lyrics');
         // append string to lyricsContainer
         $($lyricsContainer).append($lyricsArray[i]);
         // append lyricsContainer to DOM
@@ -68,6 +68,8 @@ musicmix.showLyrics = function splitString(results) {
         $('tool-picker-second').append($lyricsContainer);
     };
     console.log($lyricsArray);
+    musicmix.drag();
+    musicmix.drop();
 };
 
 // DISPLAY EMOJI... TO BE TRIGGERED ON MOUSE CLICK LATER!
@@ -123,12 +125,17 @@ musicmix.showBackgrounds = function() {
 
 };
 
+//makes lyrics draggable
 
-//makes emoji's draggable 
+
+//makes emoji's and lyrics draggable 
 musicmix.drag = function(drag) {
     $('.emoji').draggable({
         revert:"invalid",
-        containment:'.canvas-page'})
+        containment:'.canvas-page'});
+    $('.lyrics').draggable({
+        revert:"invalid",
+        containment:'.canvas-page'});
 };
 
 //makes card droppable 
