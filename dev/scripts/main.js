@@ -38,6 +38,8 @@ musicmix.getLyrics = function(query) {
 
 
 
+
+
 //.track.lyrics.get is second endpoint that receives track id
 
 /* We need to make some sort of slider or something. Otherwise we won't
@@ -90,6 +92,7 @@ musicmix.showEmoji = function() {
         $('tool-picker-first').append($emojiContainer);
 
     }
+    //calls drag and drop functions once emoji's are populated dynamically
     musicmix.drag();
     musicmix.drop();
 };
