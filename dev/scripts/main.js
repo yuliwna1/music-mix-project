@@ -115,37 +115,22 @@ musicmix.showBackgrounds = function() {
     console.log(images); 
     console.log("url", urlGallery);  
     return images;
-
+    };
     //I should put these images in the container in order to be able to click on it
 
 
     //Change background of div card-builder
 
 
-
-
-
-musicmix.drag = function(drag) {
-    $('.emoji').draggable({
-        revert:'invalid',
-        containment:'.canvas-page',
-        helper:'clone'
-    });
-}
-
-
-};
-
-//makes lyrics draggable
-
-
 //makes emoji's and lyrics draggable 
 musicmix.drag = function(drag) {
     $('.emoji').draggable({
-        revert:"invalid",
+        revert:'invalid',
+        helper:'clone',
         containment:'.canvas-page'});
     $('.lyrics').draggable({
         revert:"invalid",
+        helper:'clone',
         containment:'.canvas-page'});
 };
 
@@ -158,6 +143,8 @@ musicmix.drop = function(drop) {
                 top:0,
                 left:0
             })
+            $('.emoji').draggable();
+            $('.lyrics').draggable();
         }
     })
 }
@@ -235,10 +222,7 @@ musicmix.events = function() {
 musicmix.init = function() {
 	// Call Functions
 	musicmix.events();    
-     musicmix.showBackgrounds();
-    // musicmix.makeDraggable ();
-    // musicmix.makeDroppable();
-
+    musicmix.showBackgrounds();
 };
 
 // DOCUMENT READY //

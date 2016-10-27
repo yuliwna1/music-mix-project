@@ -55,13 +55,11 @@ article.first-button {
 		margin: 0 auto;
 		margin-top: 3%;
 	}
-	.tool-picker {
-		width: 200px;
-		height: 200px;
-		border: 1px solid blue;
-		margin: 0 auto;
-		margin-top: 3%;
-	}
+}
+
+.tool-picker-first {
+	overflow-y: auto;
+	height: 250px;
 }
 
 // .tool-picker-third {
