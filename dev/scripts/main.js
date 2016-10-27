@@ -149,6 +149,14 @@ musicmix.drop = function(drop) {
     })
 }
 
+// reset canvas on click of 'reset' button
+$('.reset').on('click', function(){
+    $('.card-builder').empty();
+});
+
+
+// return to front page
+
  
 
 // EVENTS //
