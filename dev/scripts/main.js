@@ -220,10 +220,13 @@ musicmix.events = function() {
     })
 
     //When a user clicks on "submit button", a canvas is created
+
+
     $('#publish').on('click', function() {
-        html2canvas(document.getElementsByClassName('canvas'), {
+        console.log("TEST TEST");
+        html2canvas($('.canvas'), {
             onrendered: function(canvas) {
-            document.getElementById('canvas').appendChild(canvas);
+            $('.canvas-cell').append(canvas);
             }
         });
     });
