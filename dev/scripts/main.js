@@ -222,16 +222,11 @@ musicmix.events = function() {
     //When a user clicks on "submit button", a canvas is created
 
 
-    $('.publishBtn').on('click', function() {
+    $('#publish').on('click', function() {
+        console.log("TEST TEST");
         html2canvas($('.canvas'), {
             onrendered: function(canvas) {
             $('.canvas-cell').append(canvas);
-
-    $('#publish').on('click', function() {
-        html2canvas(document.getElementsByClassName('canvas'), {
-            onrendered: function(canvas) {
-            document.getElementById('canvas').appendChild(canvas);
-
             }
         });
     });
