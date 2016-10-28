@@ -95,26 +95,49 @@ musicmix.showEmoji = function() {
 
 //Creating unsplash function (random links from unsplash).
 
+musicmix.generateBackgrounds = function() {
+    for (var i = 0; i < 20; i++) {
+        // var urlRandom = "https://unsplash.it/640/480/?image="+(Math.floor(Math.random()*1084));
+        var urlRandom = "https://source.unsplash.com/random/640x480?sig=" + (Math.floor(Math.random()*100));
+    }
+}
+
 musicmix.showBackgrounds = function() { 
     //Make an empty array
-    var urlGallery = [];
+    // var urlGallery = [];
 
     console.log("testing");
 
-    for (var i = 0; i < 8; i++) {
-        var urlRandom = "https://unsplash.it/640/480?"+(Math.floor(Math.random()*100));
-         //Everytime when I loop, I get a random image and I push it into the empty array
-        urlGallery.push(`https://source.unsplash.com/random/640x480?sig=${urlRandom}`);
-    }
+    var $imageContainer = $("<div>");
+    $imageContainer.addClass("grid-cell-img");
+    var $backgroundImg = $("<img>");
+    $($backgroundImg).attr("src", urlRandom);
+    $($imageContainer).append($backgroundImg);
+    $(".decorative-objects").append($imageContainer);
+     //Everytime when I loop, I get a random image and I push it into the empty array
+    // urlGallery.push(`https://source.unsplash.com/random/640x480?sig=${urlRandom}`);
+
+    // for (var i = 0; i < 20; i++) {
+    //     // var urlRandom = "https://unsplash.it/640/480/?image="+(Math.floor(Math.random()*1084));
+    //     var urlRandom = "https://source.unsplash.com/random/640x480?sig=" + (Math.floor(Math.random()*1084));
+    //     var $imageContainer = $("<div>");
+    //     $imageContainer.addClass("grid-cell-img");
+    //     var $backgroundImg = $("<img>");
+    //     $($backgroundImg).attr("src", urlRandom);
+    //     $($imageContainer).append($backgroundImg);
+    //     $(".decorative-objects").append($imageContainer);
+    //      //Everytime when I loop, I get a random image and I push it into the empty array
+    //     // urlGallery.push(`https://source.unsplash.com/random/640x480?sig=${urlRandom}`);
+    // }
 
     // map through array and turn into 8 DOM elements
-    var images = urlGallery.map(function(urlName) {
-        return $(`<img src="${urlName}"/>`);
-    });
+    // var images = urlGallery.map(function(urlName) {
+    //     return $(`<img src="${urlName}"/>`);
+    // });
     
-    console.log(images); 
-    console.log('url', urlGallery);  
-    return images;
+    // console.log(images); 
+    // console.log('url', urlGallery);  
+    // return images;
     };
     //I should put these images in the container in order to be able to click on it
 
@@ -232,15 +255,23 @@ musicmix.events = function() {
         $('.decorative-objects').empty();
         $('#lyricButton, #emojiButton').removeClass('active');
         $(this).addClass('active');
+        musicmix.showBackgrounds();
 
         //put 8 <img> elements from unsplash on the page using append
-        $('.decorative-objects').append(musicmix.showBackgrounds());
+        // $('.decorative-objects').append(musicmix.showBackgrounds());
 
 
-        $('.decorative-objects').on('click', 'img', function() {
+        // $('.decorative-objects').on('click', 'img', function() {
+        //     console.log('TEST');
+
+            // $('.canvas').css({'background': `url('${this.src}')`, 'background-repeat': 'no-repeat', 'background-size': 'cover'});         
+        // });
+    })
+
+    $('.decorative-objects').on('click', 'img', function() {
             console.log('TEST');
-            $('.canvas').css({'background': `url('${this.src}')`, 'background-repeat': 'no-repeat', 'background-size': 'cover'});         
-        });
+
+            $('.canvas').css({'background': `url('${this.src}')`, 'background-repeat': 'no-repeat', 'background-size': 'cover'});  
     })
 
     //When a user clicks on "submit button", a canvas is created
@@ -265,7 +296,9 @@ musicmix.events = function() {
 musicmix.init = function() {
 	// Call Functions
 	musicmix.events();    
-    musicmix.showBackgrounds();
+    // musicmix.showBackgrounds();
+    musicmix.generateBackgrounds();
+
 };
 
 // DOCUMENT READY //
