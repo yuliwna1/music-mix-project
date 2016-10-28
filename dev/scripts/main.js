@@ -238,6 +238,8 @@ musicmix.events = function() {
         html2canvas($('.canvas'), {
             allowTaint:true,
             onrendered: function(canvas) {
+            // var data = canvas.toDataURL();
+            // // alert(data);
             $('.canvas-cell').append(canvas);
             }
         });
