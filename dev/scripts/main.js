@@ -122,10 +122,10 @@ musicmix.drop = function(drop) {
             $(this).append($(ui.helper).clone());
             $('.emoji').append({
                 top:0,
-                left:0,
+                left:0
             })
             
-            $('.emoji').draggable();
+            $('.emoji').draggable().css('font-size', '40px');
             $('.lyrics').draggable();
         }
     })
@@ -150,14 +150,16 @@ musicmix.events = function() {
         musicmix.getLyrics(lyricString);
     });
     
-    // Entry page fade out, canvas page fade in
-    $('.main-btn').on('click', function(f){
+    // entry page fade out, canvas page fade in
+    $('form').on('submit', function(f) {
         $('.entry-page').fadeOut(300, function(){
             console.log('hi')
         });
+        
         $('.canvas-page').fadeIn(300, function(){
             console.log('hi again')
         });
+        // $('.decorative-objects').empty();
     });
 
     // Return to front page
@@ -224,6 +226,15 @@ musicmix.events = function() {
     });
 });
     
+musicmix.hidden = function() {
+    $('.canvas-page').fadeOut(0, function() {
+        // hide canvas on load
+    });
+    $('.publish-page').fadeOut(0, function() {
+        // hide publish on load
+    });
+};
+
 musicmix.init = function() {
 	// Call Functions
     musicmix.hidden();
