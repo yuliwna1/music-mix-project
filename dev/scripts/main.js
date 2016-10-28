@@ -203,7 +203,7 @@ musicmix.events = function() {
     });
     
     // entry page fade out, canvas page fade in
-    $('.main-btn').on('click', function(f){
+    $('form').on('submit', function(f){
         $('.entry-page').fadeOut(300, function(){
             console.log('hi')
         });
