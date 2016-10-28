@@ -139,7 +139,7 @@ musicmix.showBackgrounds = function() {
     console.log(images); 
     console.log('url', urlGallery);  
     return images;
-
+}
     //I should put these images in the container in order to be able to click on it
 
 
@@ -310,9 +310,11 @@ musicmix.events = function() {
             $('.canvas-cell').append(canvas);
             }
         });
+
         $('.canvas-page').fadeOut(300, function() {
             console.log('hay');
         });
+
         $('.publish-page').fadeIn(300, function() {
             console.log('hi');
         });
@@ -333,7 +335,7 @@ musicmix.hidden = function() {
 
 musicmix.init = function() {
 	// Call Functions
-    // musicmix.hidden();
+    musicmix.hidden();
 	musicmix.events();    
     // musicmix.showBackgrounds();
     musicmix.generateBackgrounds();
