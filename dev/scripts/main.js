@@ -264,7 +264,7 @@ musicmix.events = function() {
                 $('.canvas-cell').append(canvas);
             }
         }
-     });
+     })
 
     // Reset canvas on click of 'reset' button
     $('#reset').on('click', function() {
