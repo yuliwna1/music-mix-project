@@ -139,7 +139,7 @@ musicmix.showBackgrounds = function() {
     console.log(images); 
     console.log('url', urlGallery);  
     return images;
-
+}
     //I should put these images in the container in order to be able to click on it
 
 
@@ -261,7 +261,6 @@ musicmix.events = function() {
     };
 
     // This function is responsible for clicking on nav and brings tool picker
-
     $('#lyricButton').on('click', function(e) {
         $('.decorative-objects').empty();
         $('#emojiButton, #bgButton').removeClass('active');
