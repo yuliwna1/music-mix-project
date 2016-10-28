@@ -157,7 +157,14 @@ $('#reset').on('click', function(){
 
 
 // return to front page
-
+$('#newLyrics').on('click', function(){
+    $('.canvas-page').fadeOut(300, function(){
+        console.log('hi')
+    });
+    $('.entry-page').fadeIn(300, function(){
+        console.log('hi again')
+    });
+})
  
 // EVENTS //
 musicmix.events = function() {
@@ -171,13 +178,19 @@ musicmix.events = function() {
         var lyricSearch2 = $('#secondWord[type=search]').val();
         var lyricSearch3 = $('#thirdWord[type=search]').val();
         var lyricString = lyricSearch1.concat(" " + lyricSearch2 + " " + lyricSearch3);
-        
-        musicmix.getLyrics(lyricString);
-        $('.entry-page').fadeOut({
-            duration: 300
-        });
-        $('.canvas-page').fadeIn({duration: 300});
 
+        musicmix.getLyrics(lyricString);
+
+    });
+    
+    // entry page fade out, canvas page fade in
+    $('.main-btn').on('click', function(f){
+        $('.entry-page').fadeOut(300, function(){
+            console.log('hi')
+        });
+        $('.canvas-page').fadeIn(300, function(){
+            console.log('hi again')
+        });
     });
 
     /* On click of the lyrics tab: Take the output from the getLyrics
