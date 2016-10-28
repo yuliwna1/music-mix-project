@@ -131,7 +131,7 @@ musicmix.drop = function(drop) {
                 left: 0,
             })
             
-            $('.emoji').draggable();
+            $('.emoji').draggable().css({'fontSize': '5rem'});
             $('.lyrics').draggable();
         }
     });
