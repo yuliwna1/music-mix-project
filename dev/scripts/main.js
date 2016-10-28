@@ -237,14 +237,13 @@ musicmix.events = function() {
         $('.decorative-objects').append(musicmix.showBackgrounds());
 
 
-        $('.decorative-objects').on('click', 'img', function() {
+        $('.decorative-objects').on('click', 'grid-cell-img img', function() {
             console.log('TEST');
             $('.canvas').css({'background': `url('${this.src}')`, 'background-repeat': 'no-repeat', 'background-size': 'cover'});         
         });
     })
 
     //When a user clicks on "submit button", a canvas is created
-
 
     $('#publish').on('click', function() {
         console.log("TEST TEST");
