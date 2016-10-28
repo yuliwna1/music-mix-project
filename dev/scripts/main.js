@@ -34,7 +34,7 @@ musicmix.getLyrics = function(query) {
             // musicmix.showLyrics(musicmix.fullLyrics);
         })
     });
-}
+};
 
 //.track.lyrics.get is second endpoint that receives track id
 
@@ -145,12 +145,14 @@ musicmix.drag = function(drag) {
     $('.emoji').draggable({
         revert: 'invalid',
         helper: 'clone',
-        containment:'.canvas-page'});
+        containment:'.canvas-page'
+    });
 
     $('.lyrics').draggable({
         revert: 'invalid',
         helper:'clone',
-        containment:'.canvas-page'});
+        containment:'.canvas-page'
+    });
 };
 
 
@@ -166,31 +168,18 @@ musicmix.drop = function(drop) {
             $('.emoji').draggable();
             $('.lyrics').draggable();
         }
-    })
-}
-
-// reset canvas on click of 'reset' button
-$('#reset').on('click', function(){
-    $('.canvas').empty();
-});
-
-
-// return to front page
-$('#newLyrics').on('click', function(){
-    $('.canvas-page').fadeOut(300, function(){
-        console.log('hi')
     });
-    $('.entry-page').fadeIn(300, function(){
-        console.log('hi again')
-    });
-})
+};
+
+
+// Get random image from unsplash
+musicmix.randomIndex = function() {
+    var randomNumber = Math.round(Math.random() * 1018);
+    console.log(randomNumber);
+};
  
 // EVENTS //
 musicmix.events = function() {
-    /* On form submit: Function that checks the values entered into three 
-    text fields by the user, passes this values as arguments to the 
-    getLyrics function: musicmix.getLyrics(word1, word2, word3) */
-
     $('form').on('submit', function(e) {
         e.preventDefault();
         var lyricSearch1 = $('#firstWord[type=search]').val();
@@ -212,24 +201,17 @@ musicmix.events = function() {
         });
     });
 
-    /* On click of the lyrics tab: Take the output from the getLyrics
-    function. Clear the draggable pane. Populate the draggable pane with html elements containing the song 
-    lyrics */ 
 
-    /* On click of the emojis tab: Clear the draggable pane. Populate
-    the draggable pane with html elements containing each of the emoji
-    using the alt-codes found at:
-    http://character-code.com/emoticons-html-codes.php */
-
-    /* On click of the background tab: Take the output from a call to
-    Unsplash.it. Clear the draggable pane. Populate the draggable
-    pane with html elements containing photos */
-
-    //get random image from unsplash
-    musicmix.randomIndex = function(){
-        var randomNumber = Math.round(Math.random() * 1018);
-        console.log(randomNumber);
-    };
+    // Return to front page
+    $('#newLyrics').on('click', function() {
+        $('.canvas-page').fadeOut(300, function() {
+            console.log('hi')
+        });
+        
+        $('.entry-page').fadeIn(300, function() {
+            console.log('hi again')
+        });
+    });
 
     // This function is responsible for clicking on nav and brings tool picker
     $('#lyricButton').on('click', function(e) {
@@ -277,11 +259,17 @@ musicmix.events = function() {
         html2canvas($('.canvas'), {
             allowTaint:true,
             onrendered: function(canvas) {
-            // var data = canvas.toDataURL();
-            // // alert(data);
-            $('.canvas-cell').append(canvas);
+                // var data = canvas.toDataURL();
+                // // alert(data);
+                $('.canvas-cell').append(canvas);
             }
-        });
+        }
+     });
+
+    // Reset canvas on click of 'reset' button
+    $('#reset').on('click', function() {
+        $('.canvas').empty();
+    });
 
 
         $('.canvas-page').fadeOut(300, function() {
@@ -292,6 +280,7 @@ musicmix.events = function() {
             console.log('hi');
         });
     });
+
     
 // then(function(canvas) {
 //             document.getElementById('card-builder').append(canvas);
@@ -301,6 +290,7 @@ musicmix.hidden = function() {
     $('.canvas-page').fadeOut(0, function() {
         // hide canvas on load
     });
+   
     $('.publish-page').fadeOut(0, function() {
         // hide publish on load
     });
