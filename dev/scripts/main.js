@@ -79,14 +79,13 @@ musicmix.showEmoji = function() {
         $emojiContainer.addClass('grid-cell-emoji');
     
         // Create The Emoji
-        var $emoji = $('<p>');
+        var $emoji = $('<div>');
         $emoji.addClass('emoji');
         $emoji.html('&#' + i + ';');
 
         $($emojiContainer).append($emoji);
 
         $('.decorative-objects').append($emojiContainer);
-        $('decorative-objects').append($emojiContainer);
     }
     
     // Calls drag and drop functions once emoji's are populated dynamically
@@ -112,8 +111,9 @@ musicmix.showBackgrounds = function() {
     var images = urlGallery.map(function(urlName) {
         return $(`<img src="${urlName}"/>`);
     });
+    
     console.log(images); 
-    console.log("url", urlGallery);  
+    console.log('url', urlGallery);  
     return images;
     };
     //I should put these images in the container in order to be able to click on it
@@ -124,12 +124,12 @@ musicmix.showBackgrounds = function() {
 //makes emoji's and lyrics draggable 
 musicmix.drag = function(drag) {
     $('.emoji').draggable({
-        revert:'invalid',
-        helper:'clone',
+        revert: 'invalid',
+        helper: 'clone',
         containment:'.canvas-page'});
 
     $('.lyrics').draggable({
-        revert:"invalid",
+        revert: 'invalid',
         helper:'clone',
         containment:'.canvas-page'});
 };
@@ -138,12 +138,12 @@ musicmix.drag = function(drag) {
 musicmix.drop = function(drop) {
     $('.canvas').droppable({
         drop:function(event,ui) {
-            width: drop.width();
             $(this).append($(ui.helper).clone());
             $('.emoji').append({
-                top:0,
-                left:0
+                top: 0,
+                left: 0,
             })
+            
             $('.emoji').draggable();
             $('.lyrics').draggable();
         }

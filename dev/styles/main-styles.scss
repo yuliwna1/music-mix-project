@@ -54,7 +54,7 @@
 		}
 
 		.main-btn {
-			margin-top: 3%;
+			margin: 3% auto 0 auto;
 		}
 	}
 
@@ -105,8 +105,12 @@
 				width: 30%;
 				text-align: center;
 
-				p {
+				.emoji {
 					font-size: 5rem;
+
+					&:hover, &:active {
+						cursor: move;
+					}
 				}
 			}
 
