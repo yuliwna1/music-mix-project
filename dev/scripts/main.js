@@ -128,24 +128,48 @@ musicmix.drag = function(drag) {
         helper: 'clone',
         containment:'.canvas-page'});
 
-    $('.lyrics').draggable({
+    $('.grid-cell-lyrics').draggable({
         revert: 'invalid',
         helper:'clone',
         containment:'.canvas-page'});
+
+    // $('.emoji').draggable({ 
+    //     opacity: 0.7, 
+    //     helper: function(event) {
+    //         return $(event.target).clone().css({
+    //             width: $(event.target).width()
+    //         });
+            
+    //     },
+    //     containment:'.canvas-page',
+    //     revert: 'invalid',
+    // });  
+
+
+
 };
 
 
 musicmix.drop = function(drop) {
     $('.canvas').droppable({
+        accept: '.emoji',
         drop:function(event,ui) {
+            // var itemToClone = $(ui.draggable);
+
+            // $(this).append(itemToClone.clone().css({
+            //     width: itemToClone.width()
+            // }))
+
             $(this).append($(ui.helper).clone());
             $('.emoji').append({
                 top:0,
                 left:0,
+                // width: original
             })
             
             $('.emoji').draggable();
-            $('.lyrics').draggable();
+            $('.grid-cell-lyrics').draggable();
+
         }
     })
 }
