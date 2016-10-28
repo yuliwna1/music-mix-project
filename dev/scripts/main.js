@@ -109,12 +109,12 @@ musicmix.showBackgrounds = function() {
 
     // map through array and turn into 8 DOM elements
     var images = urlGallery.map(function(urlName) {
-        return $(`<img src="${urlName}"/>`);
+        return $(`<div><img src="${urlName}" class="grid-cell-image"/></div>`);
     });
-    
     console.log(images); 
     console.log('url', urlGallery);  
     return images;
+
     };
     //I should put these images in the container in order to be able to click on it
 
@@ -159,10 +159,10 @@ $('#reset').on('click', function(){
 // return to front page
 $('#newLyrics').on('click', function(){
     $('.canvas-page').fadeOut(300, function(){
-        console.log('hi')
+        //canvas hidden
     });
     $('.entry-page').fadeIn(300, function(){
-        console.log('hi again')
+        //entry display
     });
 })
  
@@ -186,10 +186,10 @@ musicmix.events = function() {
     // entry page fade out, canvas page fade in
     $('.main-btn').on('click', function(f){
         $('.entry-page').fadeOut(300, function(){
-            console.log('hi')
+            //entry hidden
         });
         $('.canvas-page').fadeIn(300, function(){
-            console.log('hi again')
+            //canvas display
         });
     });
 
@@ -256,14 +256,30 @@ musicmix.events = function() {
             $('.canvas-cell').append(canvas);
             }
         });
+        $('.canvas-page').fadeOut(300, function() {
+            console.log('hay');
+        });
+        $('.publish-page').fadeIn(300, function() {
+            console.log('hi');
+        });
     });
     
 // then(function(canvas) {
 //             document.getElementById('card-builder').append(canvas);
 };
 
+musicmix.hidden = function() {
+    $('.canvas-page').fadeOut(0, function() {
+        //canvas hidden on load
+    });
+    $('.publish-page').fadeOut(0, function() {
+
+    });
+};
+
 musicmix.init = function() {
 	// Call Functions
+    // musicmix.hidden();
 	musicmix.events();    
     musicmix.showBackgrounds();
 };
