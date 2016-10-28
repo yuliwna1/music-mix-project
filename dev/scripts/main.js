@@ -225,6 +225,7 @@ musicmix.events = function() {
     $('#publish').on('click', function() {
         console.log("TEST TEST");
         html2canvas($('.canvas'), {
+            allowTaint:true,
             onrendered: function(canvas) {
             $('.canvas-cell').append(canvas);
             }
