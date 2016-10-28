@@ -129,10 +129,15 @@ musicmix.showBackgrounds = function() {
     //     return $(`<img src="${urlName}"/>`);
     // });
     
+
     console.log(images); 
     console.log('url', urlGallery);  
     return images;
-}
+
+    // console.log(images); 
+    // console.log('url', urlGallery);  
+    // return images;
+    // };
     //I should put these images in the container in order to be able to click on it
 
 
@@ -280,6 +285,15 @@ musicmix.events = function() {
             $('.canvas-cell').append(canvas);
             }
         });
+
+
+        $('.canvas-page').fadeOut(300, function() {
+            console.log('hay');
+        });
+
+        $('.publish-page').fadeIn(300, function() {
+            console.log('hi');
+        });
     });
     
 // then(function(canvas) {
@@ -288,6 +302,7 @@ musicmix.events = function() {
 
 musicmix.init = function() {
 	// Call Functions
+    musicmix.hidden();
 	musicmix.events();    
     musicmix.showBackgrounds();
 
