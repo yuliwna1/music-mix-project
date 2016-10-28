@@ -79,14 +79,13 @@ musicmix.showEmoji = function() {
         $emojiContainer.addClass('grid-cell-emoji');
     
         // Create The Emoji
-        var $emoji = $('<p>');
+        var $emoji = $('<div>');
         $emoji.addClass('emoji');
         $emoji.html('&#' + i + ';');
 
         $($emojiContainer).append($emoji);
 
         $('.decorative-objects').append($emojiContainer);
-        $('decorative-objects').append($emojiContainer);
     }
     
     // Calls drag and drop functions once emoji's are populated dynamically
@@ -112,8 +111,9 @@ musicmix.showBackgrounds = function() {
     var images = urlGallery.map(function(urlName) {
         return $(`<img src="${urlName}"/>`);
     });
+    
     console.log(images); 
-    console.log("url", urlGallery);  
+    console.log('url', urlGallery);  
     return images;
     };
     //I should put these images in the container in order to be able to click on it
@@ -124,12 +124,12 @@ musicmix.showBackgrounds = function() {
 //makes emoji's and lyrics draggable 
 musicmix.drag = function(drag) {
     $('.emoji').draggable({
-        revert:'invalid',
-        helper:'clone',
+        revert: 'invalid',
+        helper: 'clone',
         containment:'.canvas-page'});
 
     $('.lyrics').draggable({
-        revert:"invalid",
+        revert: 'invalid',
         helper:'clone',
         containment:'.canvas-page'});
 };
@@ -138,12 +138,12 @@ musicmix.drag = function(drag) {
 musicmix.drop = function(drop) {
     $('.canvas').droppable({
         drop:function(event,ui) {
-            width: drop.width();
             $(this).append($(ui.helper).clone());
             $('.emoji').append({
                 top:0,
                 left:0,
             })
+            
             $('.emoji').draggable();
             $('.lyrics').draggable();
         }
@@ -157,7 +157,14 @@ $('#reset').on('click', function(){
 
 
 // return to front page
-
+$('#newLyrics').on('click', function(){
+    $('.canvas-page').fadeOut(300, function(){
+        console.log('hi')
+    });
+    $('.entry-page').fadeIn(300, function(){
+        console.log('hi again')
+    });
+})
  
 // EVENTS //
 musicmix.events = function() {
@@ -171,13 +178,19 @@ musicmix.events = function() {
         var lyricSearch2 = $('#secondWord[type=search]').val();
         var lyricSearch3 = $('#thirdWord[type=search]').val();
         var lyricString = lyricSearch1.concat(" " + lyricSearch2 + " " + lyricSearch3);
-        
-        musicmix.getLyrics(lyricString);
-        $('.entry-page').fadeOut({
-            duration: 300
-        });
-        $('.canvas-page').fadeIn({duration: 300});
 
+        musicmix.getLyrics(lyricString);
+
+    });
+    
+    // entry page fade out, canvas page fade in
+    $('.main-btn').on('click', function(f){
+        $('.entry-page').fadeOut(300, function(){
+            console.log('hi')
+        });
+        $('.canvas-page').fadeIn(300, function(){
+            console.log('hi again')
+        });
     });
 
     /* On click of the lyrics tab: Take the output from the getLyrics
@@ -238,6 +251,8 @@ musicmix.events = function() {
         html2canvas($('.canvas'), {
             allowTaint:true,
             onrendered: function(canvas) {
+            // var data = canvas.toDataURL();
+            // // alert(data);
             $('.canvas-cell').append(canvas);
             }
         });
