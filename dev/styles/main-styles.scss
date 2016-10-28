@@ -114,6 +114,23 @@
 				}
 			}
 
+			.grid-cell-img {
+				width: 90%;
+				margin: 5% auto 0 auto;
+
+				img {
+					width: 100%;
+					border-radius: 5px;
+					filter: brightness(80%);
+					transition: filter 0.3s ease;
+					&:hover {
+						filter: brightness(115%);
+						cursor: pointer;
+
+					}
+				}
+			}
+
 			&::-webkit-scrollbar {
 			    width: 0.6rem;
 			}
@@ -142,6 +159,7 @@
 			.canvas {
 				width: 640px;
 				height: 480px;
+				border-radius: 10px;
 				background-color: $white;
 			}
 

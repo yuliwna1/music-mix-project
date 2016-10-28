@@ -208,7 +208,9 @@ musicmix.events = function() {
             onrendered: function(canvas) {
                 $('.canvas-cell').append(canvas);
             }
+
         });
+
 
         // Fade Out the Canvas Page
         $('.canvas-page').fadeOut(300, function() {
