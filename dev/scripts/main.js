@@ -86,9 +86,9 @@ musicmix.showEmoji = function() {
 
         $('.decorative-objects').append($emojiContainer);
         $('decorative-objects').append($emojiContainer);
-
     }
-    //calls drag and drop functions once emoji's are populated dynamically
+    
+    // Calls drag and drop functions once emoji's are populated dynamically
     musicmix.drag();
     musicmix.drop();
 };
@@ -198,16 +198,22 @@ musicmix.events = function() {
 
     $('#lyricButton').on('click', function(e) {
         $('.decorative-objects').empty();
+        $('#emojiButton, #bgButton').removeClass('active');
+        $(this).addClass('active');
         musicmix.showLyrics();           
     });
 
     $('#emojiButton').on('click', function(e) {
         $('.decorative-objects').empty();
+        $('#lyricButton, #bgButton').removeClass('active');
+        $(this).addClass('active');
         musicmix.showEmoji();
     })
 
     $('#bgButton').on('click', function(e) {
         $('.decorative-objects').empty();
+        $('#lyricButton, #emojiButton').removeClass('active');
+        $(this).addClass('active');
 
         //put 8 <img> elements from unsplash on the page using append
         $('.decorative-objects').append(musicmix.showBackgrounds());
