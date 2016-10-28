@@ -160,10 +160,10 @@ musicmix.drop = function(drop) {
             $(this).append($(ui.helper).clone());
             $('.emoji').append({
                 top:0,
-                left:0,
+                left:0
             })
             
-            $('.emoji').draggable();
+            $('.emoji').draggable().css('font-size', '40px');
             $('.lyrics').draggable();
         }
     })
