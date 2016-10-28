@@ -232,8 +232,7 @@ musicmix.events = function() {
 musicmix.init = function() {
 	// Call Functions
     musicmix.hidden();
-	musicmix.events();    
-    musicmix.showBackgrounds();
+	musicmix.events();
 };
 
 // DOCUMENT READY //
