@@ -138,6 +138,7 @@ musicmix.drag = function(drag) {
 musicmix.drop = function(drop) {
     $('.canvas').droppable({
         drop:function(event,ui) {
+            width: drop.width();
             $(this).append($(ui.helper).clone());
             $('.emoji').append({
                 top:0,
