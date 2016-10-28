@@ -284,7 +284,6 @@ musicmix.events = function() {
         //put 8 <img> elements from unsplash on the page using append
         // $('.decorative-objects').append(musicmix.showBackgrounds());
 
-
         // $('.decorative-objects').on('click', 'img', function() {
         //     console.log('TEST');
 
@@ -299,7 +298,6 @@ musicmix.events = function() {
     })
 
     //When a user clicks on "submit button", a canvas is created
-
 
     $('#publish').on('click', function() {
         console.log("TEST TEST");
