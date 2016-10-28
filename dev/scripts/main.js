@@ -297,6 +297,15 @@ musicmix.events = function() {
 //             document.getElementById('card-builder').append(canvas);
 };
 
+musicmix.hidden = function() {
+    $('.canvas-page').fadeOut(0, function() {
+        // hide canvas on load
+    });
+    $('.publish-page').fadeOut(0, function() {
+        // hide publish on load
+    });
+};
+
 musicmix.init = function() {
 	// Call Functions
     musicmix.hidden();
