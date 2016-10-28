@@ -58,13 +58,14 @@ musicmix.showLyrics = function splitString(results) {
     for (var i = 0; i < $lyricsArray.length; i++) {
         // create container for lyrics
         var $lyricsContainer = $('<h3>');
-        $lyricsContainer.addClass('grid-cell lyrics');
+        $lyricsContainer.addClass('grid-cell-lyrics');
         // append string to lyricsContainer
         $($lyricsContainer).append($lyricsArray[i]);
         // append lyricsContainer to DOM
         $('.decorative-objects').append($lyricsContainer);
         $('decorative-objects').append($lyricsContainer);
     };
+    
     console.log($lyricsArray);
     musicmix.drag();
     musicmix.drop();
@@ -75,7 +76,7 @@ musicmix.showEmoji = function() {
     for (var i = 127744; i <= 128591; i++) {
         // Create a Container for the Emoji
         var $emojiContainer = $('<div>');
-        $emojiContainer.addClass('grid-cell emoji-container');
+        $emojiContainer.addClass('grid-cell-emoji');
     
         // Create The Emoji
         var $emoji = $('<article>');
