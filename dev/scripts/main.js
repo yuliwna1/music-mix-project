@@ -169,6 +169,17 @@ musicmix.events = function() {
         });
     });
 
+    // When the User clicks "Make Another!", return to the Home Page
+    $('#startOver').on('click', function() {
+        $('.canvas-page').fadeOut(300, function() {
+            console.log('hi');
+        });
+        
+        $('.entry-page').fadeIn(300, function() {
+            console.log('hi again');
+        });
+        $('.canvas').epmty();
+    });
     // Toggle The Lyrics Tab
     $('#lyricButton').on('click', function(e) {
         $('.decorative-objects').empty();
