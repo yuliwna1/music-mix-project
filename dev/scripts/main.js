@@ -142,7 +142,7 @@ musicmix.drop = function(drop) {
             $(this).append($(ui.helper).clone());
             $('.emoji').append({
                 top:0,
-                left:0
+                left:0,
             })
             $('.emoji').draggable();
             $('.lyrics').draggable();
