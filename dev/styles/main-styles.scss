@@ -100,6 +100,15 @@
 			background-color: $dark-black;
 			overflow-y: auto;
 
+			.grid-cell {
+				width: 30%;
+				text-align: center;
+
+				p {
+					font-size: 5rem;
+				}
+			}
+
 			&::-webkit-scrollbar {
 			    width: 0.6rem;
 			}
