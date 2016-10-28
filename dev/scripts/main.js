@@ -121,7 +121,6 @@ musicmix.showBackgrounds = function() {
 
     //Change background of div card-builder
 
-
 //makes emoji's and lyrics draggable 
 musicmix.drag = function(drag) {
     $('.emoji').draggable({
