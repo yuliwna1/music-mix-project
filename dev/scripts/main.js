@@ -114,7 +114,7 @@ musicmix.drag = function(drag) {
         containment:'.canvas-page'
     });
 
-    $('.lyrics').draggable({
+    $('.grid-cell-lyrics').draggable({
         revert: 'invalid',
         helper:'clone',
         containment:'.canvas-page'
@@ -126,13 +126,11 @@ musicmix.drop = function(drop) {
     $('.canvas').droppable({
         drop: function(event, ui) {
             $(this).append($(ui.helper).clone());
-            $('.emoji').append({
-                top: 0,
-                left: 0,
-            })
-            
-            $('.emoji').draggable().css({'fontSize': '5rem'});
-            $('.lyrics').draggable();
+            $(ui.helper).remove();
+            $('.emoji').draggable({
+                containment: '.canvas-area'
+            }).css({'fontSize': '5rem'});
+            $('.grid-cell-lyrics').draggable();
         }
     });
 };
