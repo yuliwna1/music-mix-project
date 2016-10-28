@@ -166,7 +166,6 @@ musicmix.events = function() {
     getLyrics function: musicmix.getLyrics(word1, word2, word3) */
 
     $('form').on('submit', function(e) {
-        console.log('form is working')
         e.preventDefault();
         var lyricSearch1 = $('#firstWord[type=search]').val();
         var lyricSearch2 = $('#secondWord[type=search]').val();
@@ -174,6 +173,11 @@ musicmix.events = function() {
         var lyricString = lyricSearch1.concat(" " + lyricSearch2 + " " + lyricSearch3);
         
         musicmix.getLyrics(lyricString);
+        $('.entry-page').fadeOut({
+            duration: 300
+        });
+        $('.canvas-page').fadeIn({duration: 300});
+
     });
 
     /* On click of the lyrics tab: Take the output from the getLyrics
