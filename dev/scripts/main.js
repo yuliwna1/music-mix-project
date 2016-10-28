@@ -2,6 +2,7 @@
 var musicmix = {};
 
 // FUNCTIONS //
+// Gets Track Information from the MusixMatch API Based on the User's Input
 musicmix.getLyrics = function(query) {
     $.ajax({
         type: 'GET',
@@ -15,11 +16,9 @@ musicmix.getLyrics = function(query) {
         dataType: 'jsonp'    
     }).then(function(info) {
         // Track ID
-        var heroLyrics = (info.message.body.track_list[0].track.lyrics_id);
         musicmix.trackID = (info.message.body.track_list[0].track.track_id);
-        // console.log(heroLyrics);
-    }).then(function() {
-        // Lryics based on Track ID
+
+        // Get Lyrics Info for the given track based on the Track ID
         $.ajax({
             type: 'GET',
             url: 'http://api.musixmatch.com/ws/1.1/track.lyrics.get',
@@ -31,116 +30,83 @@ musicmix.getLyrics = function(query) {
             dataType: 'jsonp'
         }).then(function(lyrics) {
             musicmix.showLyrics(lyrics.message.body.lyrics.lyrics_body);
-            // musicmix.showLyrics(musicmix.fullLyrics);
-        })
+        });
     });
 };
 
-//.track.lyrics.get is second endpoint that receives track id
+musicmix.hidden = function() {
+    // Hide Canvas on Load
+    $('.canvas-page').fadeOut(0, function() {});
+   
+    // Hide Publish on Load
+    $('.publish-page').fadeOut(0, function() {});
+};
 
-/* We need to make some sort of slider or something. Otherwise we won't
-be able to show a large number of results in the draggable pane. We could
-potentially research Flickity or another slider plugin, but we need to
-make considerations for this BEFORE we begin populating the draggable 
-pane DO NOT TRY AND POPULATE THE DRAGGABLE PANE WITHOUT DOING
-THIS FIRST, IT WILL BE GAME OVER FOR YOU, I PROMISE. :) */
-
-/* makeDraggable(): a function that initialize the draggable & droppable 
-jqueryUI functionality and applies them to elements with a corresponding 
-class. To be called in the init function. */
-
-
-// DISPLAY LYRICS... TO BE TRIGGERED ON MOUSE CLICK LATER!
-// split lyrics into an array, loop thru, display on page
+// Display Lyrics within the Decorative Objects
 musicmix.showLyrics = function splitString(results) {
+    // Splitting The Lyrics On Line Break
     var $lyricsArray = results.split('\n');
-    $lyricsArray.splice($lyricsArray.length-4)
+    // Removing The MusixMatch Copyright Info
+    $lyricsArray.splice($lyricsArray.length - 4)
+    
     for (var i = 0; i < $lyricsArray.length; i++) {
-        // create container for lyrics
+        // Create a Container for the Lyrics
         var $lyricsContainer = $('<h3>');
         $lyricsContainer.addClass('grid-cell-lyrics');
-        // append string to lyricsContainer
-        $($lyricsContainer).append($lyricsArray[i]);
-        // append lyricsContainer to DOM
+        
+        // Append To The DOM
+        $($lyricsContainer).html($lyricsArray[i]);
         $('.decorative-objects').append($lyricsContainer);
-        $('decorative-objects').append($lyricsContainer);
     };
     
-    console.log($lyricsArray);
+    // Initialize Drag & Drop
     musicmix.drag();
     musicmix.drop();
 };
 
-// DISPLAY EMOJI... TO BE TRIGGERED ON MOUSE CLICK LATER!
+// Display Emoji within the Decorative Objects
 musicmix.showEmoji = function() {
     for (var i = 127744; i <= 128591; i++) {
         // Create a Container for the Emoji
         var $emojiContainer = $('<div>');
         $emojiContainer.addClass('grid-cell-emoji');
     
-        // Create The Emoji
+        // Create the Emoji
         var $emoji = $('<div>');
         $emoji.addClass('emoji');
         $emoji.html('&#' + i + ';');
 
+        // Append to the DOM
         $($emojiContainer).append($emoji);
-
         $('.decorative-objects').append($emojiContainer);
     }
-    
-    // Calls drag and drop functions once emoji's are populated dynamically
+
+    // Initialize Drag & Drop
     musicmix.drag();
     musicmix.drop();
 };
 
-//Creating unsplash function (random links from unsplash).
-
-musicmix.generateBackgrounds = function() {
-
-}
-
-
-
+// Display Background within the Decorative Objects
 musicmix.showBackgrounds = function() { 
-    //Make an empty array
-    // var urlGallery = [];
-
-    console.log("testing");
-
+    // Generate 20 Random images for the user to choose from.
     for (var i = 0; i < 20; i++) {
-        // var urlRandom = "https://unsplash.it/640/480/?image="+(Math.floor(Math.random()*1084));
-        var urlRandom = "https://unsplash.it/640/480?image=" + (Math.floor(Math.random()*1084));
+        var urlRandom = "https://unsplash.it/640/480?image=" + (Math.floor(Math.random() * 1084));
         
+        // Create a Container for the Image
         var $imageContainer = $("<div>");
         $imageContainer.addClass("grid-cell-img");
+        
+        // Create The Image
         var $backgroundImg = $("<img>");
-        //Make fake canvas and get image data from it
-
-
         $($backgroundImg).attr("src", urlRandom);
+        
+        // Append to the DOM
         $($imageContainer).append($backgroundImg);
         $(".decorative-objects").append($imageContainer);
-         //Everytime when I loop, I get a random image and I push it into the empty array
-        // urlGallery.push(`https://source.unsplash.com/random/640x480?sig=${urlRandom}`);
-    }
-
-    // map through array and turn into 8 DOM elements
-    // var images = urlGallery.map(function(urlName) {
-    //     return $(`<img src="${urlName}"/>`);
-    // });
-    
-
-    console.log(images); 
-    console.log('url', urlGallery);  
-    return images;
-
-
-    //I should put these images in the container in order to be able to click on it
+    } 
 };
 
-    //Change background of div card-builder
-
-//makes emoji's and lyrics draggable 
+// Intialize Drag
 musicmix.drag = function(drag) {
     $('.emoji').draggable({
         revert: 'invalid',
@@ -155,14 +121,14 @@ musicmix.drag = function(drag) {
     });
 };
 
-
+// Initialize Drop
 musicmix.drop = function(drop) {
     $('.canvas').droppable({
-        drop:function(event,ui) {
+        drop: function(event, ui) {
             $(this).append($(ui.helper).clone());
             $('.emoji').append({
-                top:0,
-                left:0,
+                top: 0,
+                left: 0,
             })
             
             $('.emoji').draggable();
@@ -170,16 +136,10 @@ musicmix.drop = function(drop) {
         }
     });
 };
-
-
-// Get random image from unsplash
-musicmix.randomIndex = function() {
-    var randomNumber = Math.round(Math.random() * 1018);
-    console.log(randomNumber);
-};
  
 // EVENTS //
 musicmix.events = function() {
+    // Get Input from the User and pass it to the get lyrics.
     $('form').on('submit', function(e) {
         e.preventDefault();
         var lyricSearch1 = $('#firstWord[type=search]').val();
@@ -189,31 +149,29 @@ musicmix.events = function() {
 
         musicmix.getLyrics(lyricString);
 
+        // Fade Out The Entry Page
+        $('.entry-page').fadeOut(300, function() {
+            console.log('hi');
+        });
+        
+        // Fade In The Canvas Page
+        $('.canvas-page').fadeIn(300, function() {
+            console.log('hi again');
+        });
     });
     
-    // entry page fade out, canvas page fade in
-    $('form').on('submit', function(f){
-        $('.entry-page').fadeOut(300, function(){
-            console.log('hi')
-        });
-        $('.canvas-page').fadeIn(300, function(){
-            console.log('hi again')
-        });
-    });
-
-
-    // Return to front page
+    // When the User clicks "New Lyrics", return to the Home Page
     $('#newLyrics').on('click', function() {
         $('.canvas-page').fadeOut(300, function() {
-            console.log('hi')
+            console.log('hi');
         });
         
         $('.entry-page').fadeIn(300, function() {
-            console.log('hi again')
+            console.log('hi again');
         });
     });
 
-    // This function is responsible for clicking on nav and brings tool picker
+    // Toggle The Lyrics Tab
     $('#lyricButton').on('click', function(e) {
         $('.decorative-objects').empty();
         $('#emojiButton, #bgButton').removeClass('active');
@@ -221,6 +179,7 @@ musicmix.events = function() {
         musicmix.showLyrics();           
     });
 
+    // Toggle The Emoji Tab
     $('#emojiButton').on('click', function(e) {
         $('.decorative-objects').empty();
         $('#lyricButton, #bgButton').removeClass('active');
@@ -228,71 +187,43 @@ musicmix.events = function() {
         musicmix.showEmoji();
     });
 
+    // Toggle The Background Tab
     $('#bgButton').on('click', function(e) {
         $('.decorative-objects').empty();
         $('#lyricButton, #emojiButton').removeClass('active');
         $(this).addClass('active');
         musicmix.showBackgrounds();
-
-        //put 8 <img> elements from unsplash on the page using append
-        // $('.decorative-objects').append(musicmix.showBackgrounds());
-
-
-        // $('.decorative-objects').on('click', 'img', function() {
-        //     console.log('TEST');
-
-            // $('.canvas').css({'background': `url('${this.src}')`, 'background-repeat': 'no-repeat', 'background-size': 'cover'});         
-        // });
     })
 
+    // Change The Image Source Of The Canvas On Background Click
     $('.decorative-objects').on('click', 'img', function() {
-            console.log('TEST');
-
-            $('.canvas').css({'background': `url('${this.src}')`, 'background-repeat': 'no-repeat', 'background-size': 'cover'});  
+        console.log('TEST');
+        $('.canvas').css({'background': `url('${this.src}')`, 'background-repeat': 'no-repeat', 'background-size': 'cover'});  
     })
 
-    //When a user clicks on "submit button", a canvas is created
-
-
+    // When The User clicks the Publish Button, Create A Canvas
     $('#publish').on('click', function() {
-        console.log("TEST TEST");
         html2canvas($('.canvas'), {
             allowTaint:true,
             onrendered: function(canvas) {
-                // var data = canvas.toDataURL();
-                // // alert(data);
                 $('.canvas-cell').append(canvas);
             }
-        }
-     });
+        });
 
-    // Reset canvas on click of 'reset' button
-    $('#reset').on('click', function() {
-        $('.canvas').empty();
-    });
-
-
+        // Fade Out the Canvas Page
         $('.canvas-page').fadeOut(300, function() {
             console.log('hay');
         });
 
+        // Fade In the Publish Page
         $('.publish-page').fadeIn(300, function() {
             console.log('hi');
         });
     });
 
-    
-// then(function(canvas) {
-//             document.getElementById('card-builder').append(canvas);
-};
-
-musicmix.hidden = function() {
-    $('.canvas-page').fadeOut(0, function() {
-        // hide canvas on load
-    });
-   
-    $('.publish-page').fadeOut(0, function() {
-        // hide publish on load
+    // Reset Canvas on click of 'Reset' Button
+    $('#reset').on('click', function() {
+        $('.canvas').empty();
     });
 };
 
@@ -301,7 +232,6 @@ musicmix.init = function() {
     musicmix.hidden();
 	musicmix.events();    
     musicmix.showBackgrounds();
-
 };
 
 // DOCUMENT READY //
