@@ -172,8 +172,10 @@ musicmix.events = function() {
         var lyricString = lyricSearch1.concat(" " + lyricSearch2 + " " + lyricSearch3);
         
         musicmix.getLyrics(lyricString);
-        $('.entry-page').fadeOut(300);
-        $('.canvas-page').fadeIn(300);
+        $('.entry-page').fadeOut({
+            duration: 300
+        });
+        $('.canvas-page').fadeIn({duration: 300});
 
     });
 
