@@ -178,6 +178,7 @@ musicmix.events = function() {
         $('.entry-page').fadeIn(300, function() {
             console.log('hi again');
         });
+        $('.canvas').epmty();
     });
     // Toggle The Lyrics Tab
     $('#lyricButton').on('click', function(e) {
