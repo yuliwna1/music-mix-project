@@ -32,7 +32,7 @@ musicmix.getLyrics = function(query) {
             musicmix.showLyrics(lyrics.message.body.lyrics.lyrics_body);
         })
     });
-}
+};
 
 // Display Lyrics
 // Split lyrics into an array, loop through, display on page.
@@ -108,12 +108,14 @@ musicmix.drag = function(drag) {
     $('.emoji').draggable({
         revert: 'invalid',
         helper: 'clone',
-        containment:'.canvas-page'});
+        containment:'.canvas-page'
+    });
 
     $('.lyrics').draggable({
         revert: 'invalid',
         helper:'clone',
-        containment:'.canvas-page'});
+        containment:'.canvas-page'
+    });
 };
 
 musicmix.drop = function(drop) {
@@ -128,18 +130,17 @@ musicmix.drop = function(drop) {
             $('.emoji').draggable().css('font-size', '40px');
             $('.lyrics').draggable();
         }
-    })
-}
+    });
+};
 
 // Get random image from unsplash
-musicmix.randomIndex = function(){
+musicmix.randomIndex = function() {
     var randomNumber = Math.round(Math.random() * 1018);
     console.log(randomNumber);
 };
  
 // EVENTS //
 musicmix.events = function() {
-    // 
     $('form').on('submit', function(e) {
         e.preventDefault();
         var lyricSearch1 = $('#firstWord[type=search]').val();
@@ -163,12 +164,12 @@ musicmix.events = function() {
     });
 
     // Return to front page
-    $('#newLyrics').on('click', function(){
-        $('.canvas-page').fadeOut(300, function(){
+    $('#newLyrics').on('click', function() {
+        $('.canvas-page').fadeOut(300, function() {
             console.log('hi')
         });
         
-        $('.entry-page').fadeIn(300, function(){
+        $('.entry-page').fadeIn(300, function() {
             console.log('hi again')
         });
     });
@@ -185,7 +186,7 @@ musicmix.events = function() {
         $('#lyricButton, #bgButton').removeClass('active');
         $(this).addClass('active');
         musicmix.showEmoji();
-    })
+    });
 
     $('#bgButton').on('click', function(e) {
         $('.decorative-objects').empty();
@@ -206,14 +207,15 @@ musicmix.events = function() {
         html2canvas($('.canvas'), {
             allowTaint:true,
             onrendered: function(canvas) {
-            // var data = canvas.toDataURL();
-            // // alert(data);
-            $('.canvas-cell').append(canvas);
+                // var data = canvas.toDataURL();
+                // // alert(data);
+                $('.canvas-cell').append(canvas);
+            }
         }
      });
 
     // Reset canvas on click of 'reset' button
-    $('#reset').on('click', function(){
+    $('#reset').on('click', function() {
         $('.canvas').empty();
     });
 
@@ -224,12 +226,13 @@ musicmix.events = function() {
     $('.publish-page').fadeIn(300, function() {
         console.log('hi');
     });
-});
+};
     
 musicmix.hidden = function() {
     $('.canvas-page').fadeOut(0, function() {
         // hide canvas on load
     });
+   
     $('.publish-page').fadeOut(0, function() {
         // hide publish on load
     });
