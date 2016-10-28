@@ -96,11 +96,10 @@ musicmix.showEmoji = function() {
 //Creating unsplash function (random links from unsplash).
 
 musicmix.generateBackgrounds = function() {
-    for (var i = 0; i < 20; i++) {
-        // var urlRandom = "https://unsplash.it/640/480/?image="+(Math.floor(Math.random()*1084));
-        var urlRandom = "https://source.unsplash.com/random/640x480?sig=" + (Math.floor(Math.random()*100));
-    }
+
 }
+
+
 
 musicmix.showBackgrounds = function() { 
     //Make an empty array
@@ -108,38 +107,32 @@ musicmix.showBackgrounds = function() {
 
     console.log("testing");
 
-    var $imageContainer = $("<div>");
-    $imageContainer.addClass("grid-cell-img");
-    var $backgroundImg = $("<img>");
-    $($backgroundImg).attr("src", urlRandom);
-    $($imageContainer).append($backgroundImg);
-    $(".decorative-objects").append($imageContainer);
-     //Everytime when I loop, I get a random image and I push it into the empty array
-    // urlGallery.push(`https://source.unsplash.com/random/640x480?sig=${urlRandom}`);
+    for (var i = 0; i < 20; i++) {
+        // var urlRandom = "https://unsplash.it/640/480/?image="+(Math.floor(Math.random()*1084));
+        var urlRandom = "https://unsplash.it/640/480?image=" + (Math.floor(Math.random()*1084));
+        
+        var $imageContainer = $("<div>");
+        $imageContainer.addClass("grid-cell-img");
+        var $backgroundImg = $("<img>");
+        //Make fake canvas and get image data from it
 
-    // for (var i = 0; i < 20; i++) {
-    //     // var urlRandom = "https://unsplash.it/640/480/?image="+(Math.floor(Math.random()*1084));
-    //     var urlRandom = "https://source.unsplash.com/random/640x480?sig=" + (Math.floor(Math.random()*1084));
-    //     var $imageContainer = $("<div>");
-    //     $imageContainer.addClass("grid-cell-img");
-    //     var $backgroundImg = $("<img>");
-    //     $($backgroundImg).attr("src", urlRandom);
-    //     $($imageContainer).append($backgroundImg);
-    //     $(".decorative-objects").append($imageContainer);
-    //      //Everytime when I loop, I get a random image and I push it into the empty array
-    //     // urlGallery.push(`https://source.unsplash.com/random/640x480?sig=${urlRandom}`);
-    // }
+
+        $($backgroundImg).attr("src", urlRandom);
+        $($imageContainer).append($backgroundImg);
+        $(".decorative-objects").append($imageContainer);
+         //Everytime when I loop, I get a random image and I push it into the empty array
+        // urlGallery.push(`https://source.unsplash.com/random/640x480?sig=${urlRandom}`);
+    }
 
     // map through array and turn into 8 DOM elements
-
-    var images = urlGallery.map(function(urlName) {
-        return $(`<img src="${urlName}"/>`);
-    });
+    // var images = urlGallery.map(function(urlName) {
+    //     return $(`<img src="${urlName}"/>`);
+    // });
     
-    console.log(images); 
-    console.log('url', urlGallery);  
-    return images;
-
+    // console.log(images); 
+    // console.log('url', urlGallery);  
+    // return images;
+    };
     //I should put these images in the container in order to be able to click on it
 
 
@@ -152,48 +145,24 @@ musicmix.drag = function(drag) {
         helper: 'clone',
         containment:'.canvas-page'});
 
-    $('.grid-cell-lyrics').draggable({
+    $('.lyrics').draggable({
         revert: 'invalid',
         helper:'clone',
         containment:'.canvas-page'});
-
-    // $('.emoji').draggable({ 
-    //     opacity: 0.7, 
-    //     helper: function(event) {
-    //         return $(event.target).clone().css({
-    //             width: $(event.target).width()
-    //         });
-            
-    //     },
-    //     containment:'.canvas-page',
-    //     revert: 'invalid',
-    // });  
-
-
-
 };
 
 
 musicmix.drop = function(drop) {
     $('.canvas').droppable({
-        accept: '.emoji',
         drop:function(event,ui) {
-            // var itemToClone = $(ui.draggable);
-
-            // $(this).append(itemToClone.clone().css({
-            //     width: itemToClone.width()
-            // }))
-
             $(this).append($(ui.helper).clone());
             $('.emoji').append({
                 top:0,
                 left:0,
-                // width: original
             })
             
             $('.emoji').draggable();
-            $('.grid-cell-lyrics').draggable();
-
+            $('.lyrics').draggable();
         }
     })
 }
@@ -207,10 +176,10 @@ $('#reset').on('click', function(){
 // return to front page
 $('#newLyrics').on('click', function(){
     $('.canvas-page').fadeOut(300, function(){
-        //canvas hidden
+        console.log('hi')
     });
     $('.entry-page').fadeIn(300, function(){
-        //entry display
+        console.log('hi again')
     });
 })
  
@@ -234,10 +203,10 @@ musicmix.events = function() {
     // entry page fade out, canvas page fade in
     $('.main-btn').on('click', function(f){
         $('.entry-page').fadeOut(300, function(){
-            //entry hidden
+            console.log('hi')
         });
         $('.canvas-page').fadeIn(300, function(){
-            //canvas display
+            console.log('hi again')
         });
     });
 
@@ -285,6 +254,7 @@ musicmix.events = function() {
         //put 8 <img> elements from unsplash on the page using append
         // $('.decorative-objects').append(musicmix.showBackgrounds());
 
+
         // $('.decorative-objects').on('click', 'img', function() {
         //     console.log('TEST');
 
@@ -300,6 +270,7 @@ musicmix.events = function() {
 
     //When a user clicks on "submit button", a canvas is created
 
+
     $('#publish').on('click', function() {
         console.log("TEST TEST");
         html2canvas($('.canvas'), {
@@ -310,33 +281,16 @@ musicmix.events = function() {
             $('.canvas-cell').append(canvas);
             }
         });
-        $('.canvas-page').fadeOut(300, function() {
-            console.log('hay');
-        });
-        $('.publish-page').fadeIn(300, function() {
-            console.log('hi');
-        });
     });
     
 // then(function(canvas) {
 //             document.getElementById('card-builder').append(canvas);
 };
 
-musicmix.hidden = function() {
-    $('.canvas-page').fadeOut(0, function() {
-        //canvas hidden on load
-    });
-    $('.publish-page').fadeOut(0, function() {
-
-    });
-};
-
 musicmix.init = function() {
 	// Call Functions
-    // musicmix.hidden();
 	musicmix.events();    
-    // musicmix.showBackgrounds();
-    musicmix.generateBackgrounds();
+    musicmix.showBackgrounds();
 
 };
 
