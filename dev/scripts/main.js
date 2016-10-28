@@ -79,7 +79,7 @@ musicmix.showEmoji = function() {
         $emojiContainer.addClass('grid-cell-emoji');
     
         // Create The Emoji
-        var $emoji = $('<p>');
+        var $emoji = $('<article>');
         $emoji.addClass('emoji');
         $emoji.html('&#' + i + ';');
 
