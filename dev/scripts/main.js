@@ -136,7 +136,7 @@ musicmix.showBackgrounds = function() {
 
 
     //I should put these images in the container in order to be able to click on it
-
+};
 
     //Change background of div card-builder
 
