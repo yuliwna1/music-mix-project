@@ -210,6 +210,9 @@ musicmix.events = function() {
         $('.canvas-page').fadeIn(300, function(){
             console.log('hi again')
         });
+        // $('.decorative-objects').empty();
+
+
     });
 
     /* On click of the lyrics tab: Take the output from the getLyrics
