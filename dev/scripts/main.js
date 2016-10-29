@@ -129,11 +129,10 @@ musicmix.dragDrop = function(drag) {
             $('.emoji').draggable({
                 containment: '.canvas-area'
             }).css({'fontSize': '5rem'})
-            
+
             $('.grid-cell-lyrics').draggable({
-                containment: '.canvas-area'
-            }).css({'fontSize': '5rem'});
-            $('.grid-cell-lyrics').draggable().css({'width': '100%', 'text-align': 'center', 'font-size': '1.5rem', 'color': '$grey'});
+                // containment: '.canvas-area'
+            }).css({'width': '100%', 'text-align': 'center', 'font-size': '1.5rem', 'color': '$grey'});
             }
          });
     };
