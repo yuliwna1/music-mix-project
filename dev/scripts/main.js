@@ -60,8 +60,7 @@ musicmix.showLyrics = function splitString(results) {
     };
     
     // Initialize Drag & Drop
-    musicmix.drag();
-    musicmix.drop();
+    musicmix.dragDrop();
 };
 
 // Display Emoji within the Decorative Objects
@@ -82,8 +81,7 @@ musicmix.showEmoji = function() {
     }
 
     // Initialize Drag & Drop
-    musicmix.drag();
-    musicmix.drop();
+    musicmix.dragDrop();
 };
 
 // Display Background within the Decorative Objects
@@ -106,35 +104,40 @@ musicmix.showBackgrounds = function() {
     } 
 };
 
-// Intialize Drag
-musicmix.drag = function(drag) {
+// Intialize Drag and Drop
+musicmix.dragDrop = function(drag) {
+    //make emojis droppable
     $('.emoji').draggable({
         revert: 'invalid',
         helper: 'clone',
         containment:'.canvas-page'
     });
-
+    //make lyrics draggable
     $('.grid-cell-lyrics').draggable({
         revert: 'invalid',
         helper:'clone',
         containment:'.canvas-page'
     });
-};
-
-// Initialize Drop
-musicmix.drop = function(drop) {
+    //make canvas droppable 
     $('.canvas').droppable({
         drop: function(event, ui) {
+            //appends helper clone to drop location
             $(this).append($(ui.helper).clone());
+            //removes helper clone of item once dropped once
             $(ui.helper).remove();
+            //makes item draggable again once dropped so user can move it around within canvas
             $('.emoji').draggable({
+                containment: '.canvas-area'
+            }).css({'fontSize': '5rem'})
+            
+            $('.grid-cell-lyrics').draggable({
                 containment: '.canvas-area'
             }).css({'fontSize': '5rem'});
             $('.grid-cell-lyrics').draggable().css({'width': '100%', 'text-align': 'center', 'font-size': '1.5rem', 'color': '$grey'});
-        }
-    });
-};
- 
+            }
+         });
+    };
+
 // EVENTS //
 musicmix.events = function() {
     // Get Input from the User and pass it to the get lyrics.
@@ -178,7 +181,7 @@ musicmix.events = function() {
         $('.entry-page').fadeIn(300, function() {
             console.log('hi again');
         });
-        $('.canvas').epmty();
+        $('.canvas').empty();
     });
     // Toggle The Lyrics Tab
     $('#lyricButton').on('click', function(e) {
