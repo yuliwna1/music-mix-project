@@ -130,7 +130,7 @@ musicmix.drop = function(drop) {
             $('.emoji').draggable({
                 containment: '.canvas-area'
             }).css({'fontSize': '5rem'});
-            $('.grid-cell-lyrics').draggable();
+            $('.grid-cell-lyrics').draggable().css({'width': '100%', 'text-align': 'center', 'font-size': '1.5rem', 'color': '$grey'});
         }
     });
 };
@@ -213,13 +213,11 @@ musicmix.events = function() {
     // When The User clicks the Publish Button, Create A Canvas
     $('#publish').on('click', function() {
         html2canvas($('.canvas'), {
-            allowTaint:true,
+            allowTaint: true,
             onrendered: function(canvas) {
                 $('.canvas-cell').append(canvas);
             }
-
         });
-
 
         // Fade Out the Canvas Page
         $('.canvas-page').fadeOut(300, function() {
