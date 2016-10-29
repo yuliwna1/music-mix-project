@@ -129,12 +129,14 @@ musicmix.dragDrop = function(drag) {
             $('.emoji').draggable({
                 containment: '.canvas-area'
             }).css({'fontSize': '5rem'})
+            
             $('.grid-cell-lyrics').draggable({
-                containment: '.canvas-area',
-            });
-        }
-    });
-};
+                containment: '.canvas-area'
+            }).css({'fontSize': '5rem'});
+            $('.grid-cell-lyrics').draggable().css({'width': '100%', 'text-align': 'center', 'font-size': '1.5rem', 'color': '$grey'});
+            }
+         });
+    };
 
 // EVENTS //
 musicmix.events = function() {
@@ -170,6 +172,17 @@ musicmix.events = function() {
         });
     });
 
+    // When the User clicks "Make Another!", return to the Home Page
+    $('#startOver').on('click', function() {
+        $('.canvas-page').fadeOut(300, function() {
+            console.log('hi');
+        });
+        
+        $('.entry-page').fadeIn(300, function() {
+            console.log('hi again');
+        });
+        $('.canvas').empty();
+    });
     // Toggle The Lyrics Tab
     $('#lyricButton').on('click', function(e) {
         $('.decorative-objects').empty();
@@ -203,13 +216,11 @@ musicmix.events = function() {
     // When The User clicks the Publish Button, Create A Canvas
     $('#publish').on('click', function() {
         html2canvas($('.canvas'), {
-            allowTaint:true,
+            allowTaint: true,
             onrendered: function(canvas) {
                 $('.canvas-cell').append(canvas);
             }
-
         });
-
 
         // Fade Out the Canvas Page
         $('.canvas-page').fadeOut(300, function() {
