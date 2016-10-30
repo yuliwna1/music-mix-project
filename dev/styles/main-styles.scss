@@ -100,12 +100,16 @@
 			height: 100%;
 			background-color: $dark-black;
 			overflow-y: auto;
+			padding-top: 1%;
 
 			.grid-cell-lyrics {
 				width: 100%;
 				text-align: center;
 				font-size: 1.5rem;
 				color: $grey;
+				&:hover {
+					cursor: pointer;
+				}
 			}
 
 			.grid-cell-emoji {
@@ -235,5 +239,6 @@
 	.btn:hover {
 		background: $green;
 		color: $black;
+		cursor: pointer;
 	}
 }
