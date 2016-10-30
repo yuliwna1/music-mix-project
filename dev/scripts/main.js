@@ -84,6 +84,8 @@ musicmix.showEmoji = function() {
     musicmix.dragDrop();
 };
 
+//Recoding urls from Unsplash into base64. Otherwise, we wouldn't be able to download images.
+
 musicmix.base64Encode = function(str) {
     var CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     var out = "", i = 0, len = str.length, c1, c2, c3;
@@ -187,6 +189,8 @@ musicmix.events = function() {
 
         musicmix.getLyrics(lyricString);
 
+        $('input[type=search]').val('');
+
         // Fade Out The Entry Page
         $('.entry-page').fadeOut(300, function() {
             console.log('hi');
@@ -214,11 +218,16 @@ musicmix.events = function() {
         $('.canvas-page').fadeOut(300, function() {
             console.log('hi');
         });
+
+        $('.publish-page').fadeOut(300, function() {
+            console.log('hi');
+        });
         
         $('.entry-page').fadeIn(300, function() {
             console.log('hi again');
         });
         $('.canvas').empty();
+
     });
     // Toggle The Lyrics Tab
     $('#lyricButton').on('click', function(e) {
@@ -261,29 +270,17 @@ musicmix.events = function() {
             }
         });
 
-        // function downloadCanvas(link, canvasId, filename) {
-        //     link.href = $(canvasId).toDataURL();
-        //     link.download = filename;
-        // }
 
 
         function downloadCanvas(link, canvasId, filename) {
-            //var fakeATag = document.createElement('a');
             link.href = document.getElementById(canvasId).toDataURL();
-            link.download = filename;
-            //$(fakeATag).click();
+            link.download = filename;     
         };
 
         document.getElementById('download').addEventListener('click', function() {
             console.log("teeest"); 
-
-            downloadCanvas(this, 'canvas', 'test.png');
+            downloadCanvas(this, 'canvas', 'TuneText.png');
         }, false);
-
-        // $('#download').on('click', function() {    
-        // console.log("teeest");       
-        // downloadCanvas(this, '.canvas-cell', 'test.png');
-        // });
 
 
         // Fade Out the Canvas Page
