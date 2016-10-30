@@ -220,6 +220,16 @@ musicmix.events = function() {
 
         });
 
+        function downloadCanvas(link, canvasId, filename) {
+            link.href = document.getElementById(canvasId).toDataURL();
+            link.download = filename;
+        }
+
+        $('#download').on('click', function() {    
+        console.log("teeest");       
+        downloadCanvas(this, '.canvas-cell', 'test.png');
+        }, false);
+
 
         // Fade Out the Canvas Page
         $('.canvas-page').fadeOut(300, function() {
@@ -236,6 +246,10 @@ musicmix.events = function() {
     $('#reset').on('click', function() {
         $('.canvas').empty();
     });
+
+    //Download button
+
+
 };
 
 musicmix.init = function() {
