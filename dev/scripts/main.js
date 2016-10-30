@@ -117,7 +117,7 @@ musicmix.base64Encode = function(str) {
 }
 
 // Display Background within the Decorative Objects
-musicmix.showBackgrounds = function() { 
+musicmix.getBackgrounds = function() { 
     // Generate 20 Random images for the user to choose from.
     for (var i = 0; i < 20; i++) {
         var urlRandom = "https://unsplash.it/640/480?image=" + (Math.floor(Math.random() * 1084));
@@ -130,21 +130,28 @@ musicmix.showBackgrounds = function() {
               }
         }).then(function(result) {
             var base64Image = "data:image/png;base64, " + musicmix.base64Encode(result);
-
-            // Create a Container for the Image
-            var $imageContainer = $("<div>");
-            $imageContainer.addClass("grid-cell-img");
-            
-            // Create The Image
-            var $backgroundImg = $("<img>");
-            $($backgroundImg).attr("src", base64Image);
-            
-            // Append to the DOM
-            $($imageContainer).append($backgroundImg);
-            $(".decorative-objects").append($imageContainer);
+            musicmix.backgrounds.push(base64Image);
+            //musicmix.showBackgrounds(musicmix.backgrounds);  
         });
-    } 
+    }      
 };
+
+musicmix.showBackgrounds = function(backgrounds) {
+    for (var i =0; i < backgrounds.length; i++) {
+
+        // Create a Container for the Image
+        var $imageContainer = $("<div>");
+        $imageContainer.addClass("grid-cell-img");
+        
+        // Create The Image
+        var $backgroundImg = $("<img>");
+        $($backgroundImg).attr("src", backgrounds[i]);
+        
+        // Append to the DOM
+        $($imageContainer).append($backgroundImg);
+        $(".decorative-objects").append($imageContainer);
+    }
+}
 
 // Intialize Drag and Drop
 musicmix.dragDrop = function(drag) {
@@ -181,6 +188,8 @@ musicmix.dragDrop = function(drag) {
 
 // EVENTS //
 musicmix.lyrics = [];
+musicmix.backgrounds = [];
+
 musicmix.events = function() {
     // Get Input from the User and pass it to the get lyrics.
     $('form').on('submit', function(e) {
@@ -191,6 +200,7 @@ musicmix.events = function() {
         var lyricString = lyricSearch1.concat(" " + lyricSearch2 + " " + lyricSearch3);
 
         musicmix.getLyrics(lyricString);
+        musicmix.getBackgrounds();
 
         $('input[type=search]').val('');
 
@@ -253,7 +263,7 @@ musicmix.events = function() {
         $('.decorative-objects').empty();
         $('#lyricButton, #emojiButton').removeClass('active');
         $(this).addClass('active');
-        musicmix.showBackgrounds();
+        musicmix.showBackgrounds(musicmix.backgrounds);
     })
 
     // Change The Image Source Of The Canvas On Background Click
