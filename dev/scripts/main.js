@@ -297,6 +297,7 @@ musicmix.events = function() {
     // Reset Canvas on click of 'Reset' Button
     $('#reset').on('click', function() {
         $('.canvas').empty();
+
     });
 
     //Download button
