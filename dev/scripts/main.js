@@ -158,8 +158,8 @@ musicmix.dragDrop = function(drag) {
     //make emojis droppable
     $('.emoji').draggable({
         revert: 'invalid',
+        containment:'.canvas-page',
         helper: 'clone',
-        containment:'.canvas-page'
     });
     //make lyrics draggable
     $('.grid-cell-lyrics').draggable({
@@ -173,13 +173,15 @@ musicmix.dragDrop = function(drag) {
             //appends helper clone to drop location
             $(this).append($(ui.helper).clone());
             //removes helper clone of item once dropped once
-            $(ui.helper).remove();
-            //makes item draggable again once dropped so user can move it around within canvas
+            ($(ui.helper).remove())
+           //makes item draggable again once dropped so user can move it around within canvas
             $('.emoji').draggable({
+                // revert: 'invalid',
                 containment: '.canvas-area'
             }).css({'fontSize': '5rem'})
-
+            //makes lyrics draggable again once dropped
             $('.grid-cell-lyrics').draggable({
+                //when we have containment on for lyrics, it only lets them move along y-axis
                 // containment: '.canvas-area'
             }).css({'width': '100%', 'text-align': 'center', 'font-size': '1.5rem', 'color': '$grey'});
             }
@@ -217,6 +219,8 @@ musicmix.events = function() {
     
     // When the User clicks "New Lyrics", return to the Home Page
     $('#newLyrics').on('click', function() {
+        //empties the canvas when you choose new lyrics
+        $('.canvas').empty();
         $('.canvas-page').fadeOut(300, function() {
             console.log('hi');
         });
@@ -312,7 +316,6 @@ musicmix.events = function() {
         $('.canvas').empty();
 
     });
-
     //Download button
 
 
