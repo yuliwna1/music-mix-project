@@ -29,7 +29,8 @@ musicmix.getLyrics = function(query) {
             },
             dataType: 'jsonp'
         }).then(function(lyrics) {
-            musicmix.showLyrics(lyrics.message.body.lyrics.lyrics_body);
+            musicmix.lyrics = lyrics.message.body.lyrics.lyrics_body;
+            musicmix.showLyrics(musicmix.lyrics);
         });
     });
 };
@@ -43,7 +44,7 @@ musicmix.hidden = function() {
 };
 
 // Display Lyrics within the Decorative Objects
-musicmix.showLyrics = function splitString(results) {
+musicmix.showLyrics = function(results) {
     // Splitting The Lyrics On Line Break
     var $lyricsArray = results.split('\n');
     // Removing The MusixMatch Copyright Info
@@ -61,6 +62,7 @@ musicmix.showLyrics = function splitString(results) {
     
     // Initialize Drag & Drop
     musicmix.dragDrop();
+
 };
 
 // Display Emoji within the Decorative Objects
@@ -178,6 +180,7 @@ musicmix.dragDrop = function(drag) {
     };
 
 // EVENTS //
+musicmix.lyrics = [];
 musicmix.events = function() {
     // Get Input from the User and pass it to the get lyrics.
     $('form').on('submit', function(e) {
@@ -234,7 +237,7 @@ musicmix.events = function() {
         $('.decorative-objects').empty();
         $('#emojiButton, #bgButton').removeClass('active');
         $(this).addClass('active');
-        musicmix.showLyrics();           
+        musicmix.showLyrics(musicmix.lyrics);          
     });
 
     // Toggle The Emoji Tab
