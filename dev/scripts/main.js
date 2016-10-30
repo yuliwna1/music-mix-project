@@ -84,23 +84,61 @@ musicmix.showEmoji = function() {
     musicmix.dragDrop();
 };
 
+musicmix.base64Encode = function(str) {
+    var CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    var out = "", i = 0, len = str.length, c1, c2, c3;
+    while (i < len) {
+        c1 = str.charCodeAt(i++) & 0xff;
+        if (i == len) {
+            out += CHARS.charAt(c1 >> 2);
+            out += CHARS.charAt((c1 & 0x3) << 4);
+            out += "==";
+            break;
+        }
+        c2 = str.charCodeAt(i++);
+        if (i == len) {
+            out += CHARS.charAt(c1 >> 2);
+            out += CHARS.charAt(((c1 & 0x3)<< 4) | ((c2 & 0xF0) >> 4));
+            out += CHARS.charAt((c2 & 0xF) << 2);
+            out += "=";
+            break;
+        }
+        c3 = str.charCodeAt(i++);
+        out += CHARS.charAt(c1 >> 2);
+        out += CHARS.charAt(((c1 & 0x3) << 4) | ((c2 & 0xF0) >> 4));
+        out += CHARS.charAt(((c2 & 0xF) << 2) | ((c3 & 0xC0) >> 6));
+        out += CHARS.charAt(c3 & 0x3F);
+    }
+    return out;
+}
+
 // Display Background within the Decorative Objects
 musicmix.showBackgrounds = function() { 
     // Generate 20 Random images for the user to choose from.
     for (var i = 0; i < 20; i++) {
         var urlRandom = "https://unsplash.it/640/480?image=" + (Math.floor(Math.random() * 1084));
         
-        // Create a Container for the Image
-        var $imageContainer = $("<div>");
-        $imageContainer.addClass("grid-cell-img");
-        
-        // Create The Image
-        var $backgroundImg = $("<img>");
-        $($backgroundImg).attr("src", urlRandom);
-        
-        // Append to the DOM
-        $($imageContainer).append($backgroundImg);
-        $(".decorative-objects").append($imageContainer);
+        $.ajax({
+            type: 'GET',
+            url: urlRandom,
+            beforeSend: function( xhr ) {
+                xhr.overrideMimeType( "text/plain; charset=x-user-defined" );
+              }
+        }).then(function(result) {
+            var base64Image = "data:image/png;base64, " + musicmix.base64Encode(result);
+
+            // Create a Container for the Image
+            var $imageContainer = $("<div>");
+            $imageContainer.addClass("grid-cell-img");
+            
+            // Create The Image
+            var $backgroundImg = $("<img>");
+            $($backgroundImg).attr("src", base64Image);
+            
+            // Append to the DOM
+            $($imageContainer).append($backgroundImg);
+            $(".decorative-objects").append($imageContainer);
+        });
     } 
 };
 
@@ -216,21 +254,36 @@ musicmix.events = function() {
     $('#publish').on('click', function() {
         html2canvas($('.canvas'), {
             allowTaint: true,
+            allowCORS: true,
             onrendered: function(canvas) {
+                $(canvas).attr('id', 'canvas');
                 $('.canvas-cell').append(canvas);
             }
         });
 
-
         // function downloadCanvas(link, canvasId, filename) {
-        //     link.href = document.getElementById(canvasId).toDataURL();
+        //     link.href = $(canvasId).toDataURL();
         //     link.download = filename;
         // }
+
+
+        function downloadCanvas(link, canvasId, filename) {
+            //var fakeATag = document.createElement('a');
+            link.href = document.getElementById(canvasId).toDataURL();
+            link.download = filename;
+            //$(fakeATag).click();
+        };
+
+        document.getElementById('download').addEventListener('click', function() {
+            console.log("teeest"); 
+
+            downloadCanvas(this, 'canvas', 'test.png');
+        }, false);
 
         // $('#download').on('click', function() {    
         // console.log("teeest");       
         // downloadCanvas(this, '.canvas-cell', 'test.png');
-        // }, false);
+        // });
 
 
         // Fade Out the Canvas Page
