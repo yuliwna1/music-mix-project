@@ -256,7 +256,7 @@ musicmix.events = function() {
         $('.entry-page').delay(500).fadeIn(300, function() {
             console.log('hi again');
         });
-        // $('.canvas').empty();
+        $('.canvas').empty();
         $('.canvas').css({'background': '#181819'});
 
     });
