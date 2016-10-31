@@ -141,7 +141,7 @@ musicmix.getBackgrounds = function() {
         }).then(function(result) {
             var base64Image = "data:image/png;base64, " + musicmix.base64Encode(result);
             musicmix.backgrounds.push(base64Image);
-            //musicmix.showBackgrounds(musicmix.backgrounds);  
+            // musicmix.showBackgrounds(musicmix.backgrounds);  
         });
     }      
 };
@@ -255,7 +255,8 @@ musicmix.events = function() {
         $('.entry-page').fadeIn(300, function() {
             console.log('hi again');
         });
-        $('.canvas').empty();
+        // $('.canvas').empty();
+        $('.canvas').css({'background': '#181819'});
 
     });
     // Toggle The Lyrics Tab
