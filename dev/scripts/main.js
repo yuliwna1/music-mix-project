@@ -30,7 +30,7 @@ musicmix.getLyrics = function(query) {
             dataType: 'jsonp'
         }).then(function(lyrics) {
             musicmix.lyrics = lyrics.message.body.lyrics.lyrics_body;
-            // if results are empty, user is prompted to reenter words - doesnt currently work
+            // If results are empty, user is prompted to reenter words - doesnt currently work
             if (musicmix.lyrics === []) {
                 alert('Sorry pal, couldn\'t generate any results. Maybe choose some new words or check your spelling. Or don\'t ... your call');
                 console.log('does this work?');
@@ -68,7 +68,6 @@ musicmix.showLyrics = function(results) {
     
     // Initialize Drag & Drop
     musicmix.dragDrop();
-
 };
 
 // Display Emoji within the Decorative Objects
@@ -92,20 +91,23 @@ musicmix.showEmoji = function() {
     musicmix.dragDrop();
 };
 
-//Recoding urls from Unsplash into base64. Otherwise, we wouldn't be able to download images.
-
+// Recoding urls from Unsplash into base64. Otherwise, we wouldn't be able to download images.
 musicmix.base64Encode = function(str) {
     var CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
     var out = "", i = 0, len = str.length, c1, c2, c3;
+    
     while (i < len) {
         c1 = str.charCodeAt(i++) & 0xff;
+        
         if (i == len) {
             out += CHARS.charAt(c1 >> 2);
             out += CHARS.charAt((c1 & 0x3) << 4);
             out += "==";
             break;
         }
+        
         c2 = str.charCodeAt(i++);
+        
         if (i == len) {
             out += CHARS.charAt(c1 >> 2);
             out += CHARS.charAt(((c1 & 0x3)<< 4) | ((c2 & 0xF0) >> 4));
@@ -113,14 +115,16 @@ musicmix.base64Encode = function(str) {
             out += "=";
             break;
         }
+        
         c3 = str.charCodeAt(i++);
         out += CHARS.charAt(c1 >> 2);
         out += CHARS.charAt(((c1 & 0x3) << 4) | ((c2 & 0xF0) >> 4));
         out += CHARS.charAt(((c2 & 0xF) << 2) | ((c3 & 0xC0) >> 6));
         out += CHARS.charAt(c3 & 0x3F);
     }
+    
     return out;
-}
+};
 
 // Display Background within the Decorative Objects
 musicmix.getBackgrounds = function() { 
@@ -133,7 +137,7 @@ musicmix.getBackgrounds = function() {
             url: urlRandom,
             beforeSend: function( xhr ) {
                 xhr.overrideMimeType( "text/plain; charset=x-user-defined" );
-              }
+            }
         }).then(function(result) {
             var base64Image = "data:image/png;base64, " + musicmix.base64Encode(result);
             musicmix.backgrounds.push(base64Image);
@@ -157,23 +161,25 @@ musicmix.showBackgrounds = function(backgrounds) {
         $($imageContainer).append($backgroundImg);
         $(".decorative-objects").append($imageContainer);
     }
-}
+};
 
 // Intialize Drag and Drop
 musicmix.dragDrop = function(drag) {
-    //make emojis droppable
+    // Make emojis droppable
     $('.emoji').draggable({
         revert: 'invalid',
         containment:'.canvas-page',
         helper: 'clone',
     });
-    //make lyrics draggable
+    
+    // Make lyrics draggable
     $('.grid-cell-lyrics').draggable({
         revert: 'invalid',
         helper:'clone',
         containment:'.canvas-page'
     });
-    //make canvas droppable 
+    
+    // Make canvas droppable 
     $('.canvas').droppable({
         drop: function(event, ui) {
             //appends helper clone to drop location
@@ -190,9 +196,9 @@ musicmix.dragDrop = function(drag) {
                 //when we have containment on for lyrics, it only lets them move along y-axis
                 // containment: '.canvas-area'
             }).css({'width': '100%', 'text-align': 'center', 'font-size': '1.5rem', 'color': '$grey'});
-            }
-         });
-    };
+        }
+    });
+};
 
 // EVENTS //
 musicmix.lyrics = [];
