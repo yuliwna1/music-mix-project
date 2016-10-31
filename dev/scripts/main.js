@@ -176,12 +176,13 @@ musicmix.dragDrop = function(drag) {
     $('.grid-cell-lyrics').draggable({
         revert: 'invalid',
         helper:'clone',
-        containment:'.canvas-page'
+        containment:'.canvas-page',
     });
     
     // Make canvas droppable 
     $('.canvas').droppable({
         drop: function(event, ui) {
+            accept: '.emoji', '.grid-cell-lyrics'
             //appends helper clone to drop location
             $(this).append($(ui.helper).clone());
             //removes helper clone of item once dropped once
@@ -190,11 +191,10 @@ musicmix.dragDrop = function(drag) {
             $('.emoji').draggable({
                 // revert: 'invalid',
                 containment: '.canvas-area'
-            }).css({'fontSize': '5rem'})
+            }).css({'fontSize': '5rem', 'z-index': '1'})
             //makes lyrics draggable again once dropped
             $('.grid-cell-lyrics').draggable({
                 //when we have containment on for lyrics, it only lets them move along y-axis
-                // containment: '.canvas-area'
             }).css({'width': '100%', 'text-align': 'center', 'font-size': '1.5rem', 'color': '$grey'});
         }
     });
