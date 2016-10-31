@@ -255,7 +255,8 @@ musicmix.events = function() {
         $('.entry-page').fadeIn(300, function() {
             console.log('hi again');
         });
-        $('.canvas').empty();
+        // $('.canvas').empty();
+        $('.canvas').css({'background': '#181819'});
 
     });
     // Toggle The Lyrics Tab
