@@ -130,10 +130,10 @@
 					border-radius: 5px;
 					filter: brightness(80%);
 					transition: filter 0.3s ease;
+					
 					&:hover {
 						filter: brightness(115%);
 						cursor: pointer;
-
 					}
 				}
 			}
@@ -150,6 +150,7 @@
 				border-radius: 5px;
 				background-color: rgba($grey, 0.6);
 			}
+			
 			.grid-cell-image {
 				width: 100%;
 			}
