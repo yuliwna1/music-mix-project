@@ -29,7 +29,9 @@ musicmix.getLyrics = function(query) {
             },
             dataType: 'jsonp'
         }).then(function(lyrics) {
-            musicmix.showLyrics(lyrics.message.body.lyrics.lyrics_body);
+            musicmix.lyrics = lyrics.message.body.lyrics.lyrics_body;
+            musicmix.showLyrics(musicmix.lyrics);
+
         });
     });
 };
@@ -43,7 +45,7 @@ musicmix.hidden = function() {
 };
 
 // Display Lyrics within the Decorative Objects
-musicmix.showLyrics = function splitString(results) {
+musicmix.showLyrics = function(results) {
     // Splitting The Lyrics On Line Break
     var $lyricsArray = results.split('\n');
     // Removing The MusixMatch Copyright Info
@@ -60,8 +62,8 @@ musicmix.showLyrics = function splitString(results) {
     };
     
     // Initialize Drag & Drop
-    musicmix.drag();
-    musicmix.drop();
+    musicmix.dragDrop();
+
 };
 
 // Display Emoji within the Decorative Objects
@@ -82,60 +84,115 @@ musicmix.showEmoji = function() {
     }
 
     // Initialize Drag & Drop
-    musicmix.drag();
-    musicmix.drop();
+    musicmix.dragDrop();
 };
 
+//Recoding urls from Unsplash into base64. Otherwise, we wouldn't be able to download images.
+
+musicmix.base64Encode = function(str) {
+    var CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    var out = "", i = 0, len = str.length, c1, c2, c3;
+    while (i < len) {
+        c1 = str.charCodeAt(i++) & 0xff;
+        if (i == len) {
+            out += CHARS.charAt(c1 >> 2);
+            out += CHARS.charAt((c1 & 0x3) << 4);
+            out += "==";
+            break;
+        }
+        c2 = str.charCodeAt(i++);
+        if (i == len) {
+            out += CHARS.charAt(c1 >> 2);
+            out += CHARS.charAt(((c1 & 0x3)<< 4) | ((c2 & 0xF0) >> 4));
+            out += CHARS.charAt((c2 & 0xF) << 2);
+            out += "=";
+            break;
+        }
+        c3 = str.charCodeAt(i++);
+        out += CHARS.charAt(c1 >> 2);
+        out += CHARS.charAt(((c1 & 0x3) << 4) | ((c2 & 0xF0) >> 4));
+        out += CHARS.charAt(((c2 & 0xF) << 2) | ((c3 & 0xC0) >> 6));
+        out += CHARS.charAt(c3 & 0x3F);
+    }
+    return out;
+}
+
 // Display Background within the Decorative Objects
-musicmix.showBackgrounds = function() { 
+musicmix.getBackgrounds = function() { 
     // Generate 20 Random images for the user to choose from.
     for (var i = 0; i < 20; i++) {
         var urlRandom = "https://unsplash.it/640/480?image=" + (Math.floor(Math.random() * 1084));
         
+        $.ajax({
+            type: 'GET',
+            url: urlRandom,
+            beforeSend: function( xhr ) {
+                xhr.overrideMimeType( "text/plain; charset=x-user-defined" );
+              }
+        }).then(function(result) {
+            var base64Image = "data:image/png;base64, " + musicmix.base64Encode(result);
+            musicmix.backgrounds.push(base64Image);
+            //musicmix.showBackgrounds(musicmix.backgrounds);  
+        });
+    }      
+};
+
+musicmix.showBackgrounds = function(backgrounds) {
+    for (var i =0; i < backgrounds.length; i++) {
+
         // Create a Container for the Image
         var $imageContainer = $("<div>");
         $imageContainer.addClass("grid-cell-img");
         
         // Create The Image
         var $backgroundImg = $("<img>");
-        $($backgroundImg).attr("src", urlRandom);
+        $($backgroundImg).attr("src", backgrounds[i]);
         
         // Append to the DOM
         $($imageContainer).append($backgroundImg);
         $(".decorative-objects").append($imageContainer);
-    } 
-};
+    }
+}
 
-// Intialize Drag
-musicmix.drag = function(drag) {
+// Intialize Drag and Drop
+musicmix.dragDrop = function(drag) {
+    //make emojis droppable
     $('.emoji').draggable({
         revert: 'invalid',
+        containment:'.canvas-page',
         helper: 'clone',
-        containment:'.canvas-page'
     });
-
+    //make lyrics draggable
     $('.grid-cell-lyrics').draggable({
         revert: 'invalid',
         helper:'clone',
         containment:'.canvas-page'
     });
-};
-
-// Initialize Drop
-musicmix.drop = function(drop) {
+    //make canvas droppable 
     $('.canvas').droppable({
         drop: function(event, ui) {
+            //appends helper clone to drop location
             $(this).append($(ui.helper).clone());
-            $(ui.helper).remove();
+            //removes helper clone of item once dropped once
+            ($(ui.helper).remove())
+           //makes item draggable again once dropped so user can move it around within canvas
             $('.emoji').draggable({
+                // revert: 'invalid',
                 containment: '.canvas-area'
-            }).css({'fontSize': '5rem'});
-            $('.grid-cell-lyrics').draggable().css({'width': '100%', 'text-align': 'center', 'font-size': '1.5rem', 'color': '$grey'});
-        }
-    });
-};
- 
+            }).css({'fontSize': '5rem'})
+            //makes lyrics draggable again once dropped
+            $('.grid-cell-lyrics').draggable({
+                //when we have containment on for lyrics, it only lets them move along y-axis
+                // containment: '.canvas-area'
+            }).css({'width': '100%', 'text-align': 'center', 'font-size': '1.5rem', 'color': '$grey'});
+            }
+         });
+    };
+
 // EVENTS //
+musicmix.lyrics = [];
+musicmix.backgrounds = [];
+
 musicmix.events = function() {
     // Get Input from the User and pass it to the get lyrics.
     $('form').on('submit', function(e) {
@@ -144,8 +201,15 @@ musicmix.events = function() {
         var lyricSearch2 = $('#secondWord[type=search]').val();
         var lyricSearch3 = $('#thirdWord[type=search]').val();
         var lyricString = lyricSearch1.concat(" " + lyricSearch2 + " " + lyricSearch3);
-
+        // if results are empty, user is prompted to reenter words
+        if (lyricString == []) {
+            alert('Sorry pal, couldn\'t generate any results. Maybe choose some new words or check your spelling. Or don\'t ... your call');
+            console.log('does this work?');
+        };
         musicmix.getLyrics(lyricString);
+        musicmix.getBackgrounds();
+
+        $('input[type=search]').val('');
 
         // Fade Out The Entry Page
         $('.entry-page').fadeOut(300, function() {
@@ -160,6 +224,8 @@ musicmix.events = function() {
     
     // When the User clicks "New Lyrics", return to the Home Page
     $('#newLyrics').on('click', function() {
+        //empties the canvas when you choose new lyrics
+        $('.canvas').empty();
         $('.canvas-page').fadeOut(300, function() {
             console.log('hi');
         });
@@ -174,18 +240,23 @@ musicmix.events = function() {
         $('.canvas-page').fadeOut(300, function() {
             console.log('hi');
         });
+
+        $('.publish-page').fadeOut(300, function() {
+            console.log('hi');
+        });
         
         $('.entry-page').fadeIn(300, function() {
             console.log('hi again');
         });
-        $('.canvas').epmty();
+        $('.canvas').empty();
+
     });
     // Toggle The Lyrics Tab
     $('#lyricButton').on('click', function(e) {
         $('.decorative-objects').empty();
         $('#emojiButton, #bgButton').removeClass('active');
         $(this).addClass('active');
-        musicmix.showLyrics();           
+        musicmix.showLyrics(musicmix.lyrics);          
     });
 
     // Toggle The Emoji Tab
@@ -201,7 +272,7 @@ musicmix.events = function() {
         $('.decorative-objects').empty();
         $('#lyricButton, #emojiButton').removeClass('active');
         $(this).addClass('active');
-        musicmix.showBackgrounds();
+        musicmix.showBackgrounds(musicmix.backgrounds);
     })
 
     // Change The Image Source Of The Canvas On Background Click
@@ -212,12 +283,28 @@ musicmix.events = function() {
 
     // When The User clicks the Publish Button, Create A Canvas
     $('#publish').on('click', function() {
+        $('.final-canvas').empty();
         html2canvas($('.canvas'), {
             allowTaint: true,
+            allowCORS: true,
             onrendered: function(canvas) {
+                $(canvas).attr('id', 'canvas');
                 $('.canvas-cell').append(canvas);
             }
         });
+
+
+
+        function downloadCanvas(link, canvasId, filename) {
+            link.href = document.getElementById(canvasId).toDataURL();
+            link.download = filename;     
+        };
+
+        document.getElementById('download').addEventListener('click', function() {
+            console.log("teeest"); 
+            downloadCanvas(this, 'canvas', 'TuneText.png');
+        }, false);
+
 
         // Fade Out the Canvas Page
         $('.canvas-page').fadeOut(300, function() {
@@ -233,7 +320,12 @@ musicmix.events = function() {
     // Reset Canvas on click of 'Reset' Button
     $('#reset').on('click', function() {
         $('.canvas').empty();
+        console.log('testing canvas clearing')
+
     });
+    //Download button
+
+
 };
 
 musicmix.init = function() {
