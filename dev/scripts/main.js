@@ -224,7 +224,7 @@ musicmix.events = function() {
         });
         
         // Fade In The Canvas Page
-        $('.canvas-page').fadeIn(300, function() {
+        $('.canvas-page').delay(500).fadeIn(300, function() {
             console.log('hi again');
         });
     });
@@ -237,7 +237,7 @@ musicmix.events = function() {
             console.log('hi');
         });
         
-        $('.entry-page').fadeIn(300, function() {
+        $('.entry-page').delay(500).fadeIn(300, function() {
             console.log('hi again');
         });
     });
@@ -252,7 +252,7 @@ musicmix.events = function() {
             console.log('hi');
         });
         
-        $('.entry-page').fadeIn(300, function() {
+        $('.entry-page').delay(500).fadeIn(300, function() {
             console.log('hi again');
         });
         // $('.canvas').empty();
@@ -320,7 +320,7 @@ musicmix.events = function() {
         });
 
         // Fade In the Publish Page
-        $('.publish-page').fadeIn(300, function() {
+        $('.publish-page').delay(500).fadeIn(300, function() {
             console.log('hi');
         });
     });
