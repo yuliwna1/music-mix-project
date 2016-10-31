@@ -190,7 +190,7 @@ musicmix.dragDrop = function(drag) {
            //makes item draggable again once dropped so user can move it around within canvas
             $('.emoji').draggable({
                 // revert: 'invalid',
-                containment: '.canvas-area'
+                // containment: '.canvas-area'
             }).css({'fontSize': '5rem', 'z-index': '1'})
             //makes lyrics draggable again once dropped
             $('.grid-cell-lyrics').draggable({
