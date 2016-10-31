@@ -240,6 +240,7 @@ musicmix.events = function() {
         $('.entry-page').fadeIn(300, function() {
             console.log('hi again');
         });
+        $('.canvas').css({'background': '#181819'});
     });
 
     // When the User clicks "Make Another!", return to the Home Page
@@ -328,6 +329,7 @@ musicmix.events = function() {
     // Reset Canvas on click of 'Reset' Button
     $('#reset').on('click', function() {
         $('.canvas').empty();
+        $('.canvas').css({'background': '#181819'});
 
     });
     //Download button
