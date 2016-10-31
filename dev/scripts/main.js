@@ -30,6 +30,11 @@ musicmix.getLyrics = function(query) {
             dataType: 'jsonp'
         }).then(function(lyrics) {
             musicmix.lyrics = lyrics.message.body.lyrics.lyrics_body;
+            // if results are empty, user is prompted to reenter words - doesnt currently work
+            if (musicmix.lyrics === []) {
+                alert('Sorry pal, couldn\'t generate any results. Maybe choose some new words or check your spelling. Or don\'t ... your call');
+                console.log('does this work?');
+            };
             musicmix.showLyrics(musicmix.lyrics);
 
         });
@@ -201,11 +206,7 @@ musicmix.events = function() {
         var lyricSearch2 = $('#secondWord[type=search]').val();
         var lyricSearch3 = $('#thirdWord[type=search]').val();
         var lyricString = lyricSearch1.concat(" " + lyricSearch2 + " " + lyricSearch3);
-        // if results are empty, user is prompted to reenter words
-        if (lyricString == []) {
-            alert('Sorry pal, couldn\'t generate any results. Maybe choose some new words or check your spelling. Or don\'t ... your call');
-            console.log('does this work?');
-        };
+
         musicmix.getLyrics(lyricString);
         musicmix.getBackgrounds();
 
@@ -320,7 +321,6 @@ musicmix.events = function() {
     // Reset Canvas on click of 'Reset' Button
     $('#reset').on('click', function() {
         $('.canvas').empty();
-        console.log('testing canvas clearing')
 
     });
     //Download button
